@@ -8,7 +8,8 @@
     "node": "4.*"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "postinstall": "bower install"
   },
   "repository": {
     "type": "git",
@@ -16,6 +17,7 @@
   },
   "dependencies": {
     "body-parser": "^1.16.1",
+    "bower": "^1.8.0",
     "cfenv": "^1.0.x",
     "cloudant": "^1.7.1",
     "dotenv": "^4.0.0",
