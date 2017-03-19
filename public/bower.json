@@ -1,0 +1,22 @@
+{
+  "name": "WorldInsight",
+  "authors": [
+    "Tavish Aggarwal"
+  ],
+  "description": "Portal where people collabrate to help others",
+  "main": "",
+  "license": "MIT",
+  "homepage": "index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "angular": "^1.6.3",
+    "font-awesome": "^4.7.0"
+  }
+}

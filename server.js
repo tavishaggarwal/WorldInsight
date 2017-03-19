@@ -33,13 +33,14 @@ if (appEnv.services['cloudantNoSQLDB']) {
   var dbName = 'worldinsight';
 
   // Create a new "WorldInsight" database.
-  cloudant.db.create(dbName, function(err, data) {
-    if(!err) //err if database doesn't already exists
-      console.log("Created database: " + dbName);
-      else{
-        console.log(err);
-      }
-  });
+  
+  // cloudant.db.create(dbName, function(err, data) {
+  //   if(!err) //err if database doesn't already exists
+  //     console.log("Created database: " + dbName);
+  //     else{
+  //       console.log(err);
+  //     }
+  // });
 
   // Specify the database we are going to use (WorldInsight)...
   mydb = cloudant.db.use(dbName);
@@ -47,7 +48,7 @@ if (appEnv.services['cloudantNoSQLDB']) {
 
 
 //serve static file (index.html, images, css)
-app.use(express.static(__dirname + '/views'));
+app.use(express.static(__dirname + '/public'));
 
 
 
