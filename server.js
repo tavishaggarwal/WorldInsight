@@ -50,7 +50,13 @@ if (appEnv.services['cloudantNoSQLDB']) {
 //serve static file (index.html, images, css)
 app.use(express.static(__dirname + '/public'));
 
+app.get('/posts', function(req, res, next) {
+    res.send('Posts coming soon');
+});
 
+app.get('*', function(req, res, next) {
+    res.sendfile('/public/index.html', {root: __dirname });
+});
 
 var port = process.env.PORT || 3000;
 app.listen(port, function() {

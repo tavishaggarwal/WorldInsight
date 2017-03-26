@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Portal where people collaborate together with same motive to make their country/world a better place to live">
     <meta name="author" content="Tavish Aggarwal">
-
+    <base href="/">
     <title>World Insight</title>
 
     <!-- Bootstrap Core CSS -->
@@ -32,167 +32,76 @@
 </head>
 
 <body ng-app="WorldInsight">
-
+    <div id="top" class="login-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <a ui-sref="home"><img src="images/logo.png" alt="World Insight Logo" /></a>
+                </div>
+                <div class="col-md-5 signUp-form">
+                    <table cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td >
+                                    <label for="email">Email or Phone</label>
+                                </td>
+                                <td >
+                                    <label for="pass">Password</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="email" name="email" id="email" placeholder="Enter Email..">
+                                </td>
+                                <td>
+                                    <input type="password" name="pass" id="pass" placeholder="Enter Password..">
+                                </td>
+                                <td>
+                                    <label id="loginbutton" class="login">
+                                        <input value="Log In" tabindex="4" type="submit">
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <label>Forgotten account?</label>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div> <!-- End of class row -->
+        </div>
+    </div>
     <!-- Navigation -->
     <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
     <nav id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
             <li class="sidebar-brand">
-                <a href="#top" onclick='$("#menu-close").click();'>World Insight</a>
+                <a ui-sref="home" onclick='$("#menu-close").click();'>World Insight</a>
             </li>
             <li>
-                <a href="#top" onclick='$("#menu-close").click();'>Home</a>
+                <a ui-sref="home" onclick='$("#menu-close").click();'>Home</a>
             </li>
             <li>
-                <a href="#about" onclick='$("#menu-close").click();'>About</a>
+                <a ui-sref="signup" onclick='$("#menu-close").click();'>Sign Up/ Login</a>
             </li>
             <li>
-                <a href="#services" onclick='$("#menu-close").click();'>Services</a>
-            </li>
-            <li>
-                <a href="#portfolio" onclick='$("#menu-close").click();'>Portfolio</a>
-            </li>
-            <li>
-                <a href="#contact" onclick='$("#menu-close").click();'>Contact</a>
+                <a ui-sref="posts" onclick='$("#menu-close").click();'>Posts</a>
             </li>
         </ul>
     </nav>
-
-    <!-- Header -->
-    <header id="top" class="header">
-        <div class="text-vertical-center">
-            <h1>Site where people collaborate to help others</h1>
-            <h3>Portal where people collaborate together with same motive to 
-			 make their country/world a better place to live. </h3>
-            <br>
-            <a href="#" class="btn btn-dark btn-lg">View Posts</a>
-        </div>
-    </header>
-
-    <!-- About -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <p class="lead">We provide platform to connect so that you can help yourself and others. You can upload post/ video about anything you around you is not correct
-                        and get help or suggstions to tackel it from the community.
-                    </p>
-                </div>
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
-    </section>
-
-    <!-- Services -->
-    <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-    <section id="services" class="services bg-primary">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-lg-10 col-lg-offset-1">
-                    <h2>How it works?</h2>
-                    <hr class="small">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <h4>
-                                    <strong>Add Post</strong>
-                                </h4>
-                                <p>Add a post stating your problem or concern</p>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <h4>
-                                    <strong>Share with World</strong>
-                                </h4>
-                                <p>All the post added are public to world, so world can see your concern</p>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <h4>
-                                    <strong>Community Help</strong>
-                                </h4>
-                                <p>Get suggesions from community for your problem</p>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <h4>
-                                    <strong>Share with World</strong>
-                                </h4>
-                                <p>Share your post and solution with world to spread awareness</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.row (nested) -->
-                </div>
-                <!-- /.col-lg-10 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
-    </section>
-
-    <!-- Callout -->
-    <aside class="callout">
-        <div class="text-vertical-center">
-            <h1>Who we are?</h1>
-            <br />
-            <a href="#" class="btn btn-dark btn-lg">About Us</a>
-        </div>
-    </aside>
-
-    <!-- Portfolio -->
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h2>Posts shared by community</h2>
-                    <hr class="small">
-                    <div class="row">
-                        
-                    </div>
-                    <!-- /.row (nested) -->
-                    <a href="#" class="btn btn-dark">View More Items</a>
-                </div>
-                <!-- /.col-lg-10 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
-    </section>
-
-    <!-- Call to Action -->
-    <aside class="call-to-action bg-primary">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h3>Sign Up Now!</h3>
-                    <a href="#" class="btn btn-lg btn-light">New User: Register</a>
-                    <a href="#" class="btn btn-lg btn-dark">Already a member: Login</a>
-                </div>
-            </div>
-        </div>
-    </aside>
-
-    <!-- Map -->
-    <section id="contact" class="map">
-        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
-        <br />
-        <small>
-            <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
-        </small>
-    </section>
+    <!-- Views are injected here -->
+    <div ui-view></div>
 
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h4><strong>Worl Insight</strong>
+                    <h4><strong>World Insight</strong>
                     </h4>
                     <p>172 Hyderabad, India</p>
                     <ul class="list-unstyled">
@@ -217,7 +126,9 @@
                 </div>
             </div>
         </div>
-        <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+        <span ng-controller="indexController">
+        <a id="to-top" ng-click= "scrollTo('top')" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+        </span>
     </footer>
 
     <!-- jQuery -->
@@ -227,7 +138,9 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="javascript/nativeJS.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 	<script src="javascript/app.js"></script>
+    <script src="javascript/controller/indexController.js"></script>
 </body>
 
 </html>

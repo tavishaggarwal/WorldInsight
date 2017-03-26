@@ -1,0 +1,28 @@
+.login-header {
+  top: 0;
+  left: 0;
+  height: 85px;
+  background-color: #337ab7;
+  border-bottom: 1px solid #3b5998;
+}
+.login-header .row {
+  margin-top: 5px;
+}
+.signUp-form label {
+  color: #fff;
+  font-weight: normal;
+}
+.signUp-form tr td {
+  padding-right: 10px;
+}
+.signUp-form tr td label {
+  margin-bottom: 0;
+}
+.signUp-form .login input {
+  background-color: #337ab7;
+  border-color: #3b5998;
+}
+#menu-toggle,
+#sidebar-wrapper {
+  top: 0;
+}
