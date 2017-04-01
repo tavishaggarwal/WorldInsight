@@ -36,7 +36,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
-                    <a ui-sref="home"><img src="images/logo.png" alt="World Insight Logo" /></a>
+                    <a ui-sref="home"><span class="logo">World Insight</span></a>
                 </div>
                 <div class="col-md-5 signUp-form">
                     <table cellspacing="0">
@@ -49,16 +49,16 @@
                                     <label for="pass">Password</label>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr class="form-group">
                                 <td>
-                                    <input type="email" name="email" id="email" placeholder="Enter Email..">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email..">
                                 </td>
                                 <td>
-                                    <input type="password" name="pass" id="pass" placeholder="Enter Password..">
+                                    <input type="password" class="form-control" name="pass" id="pass" placeholder="Enter Password..">
                                 </td>
                                 <td>
                                     <label id="loginbutton" class="login">
-                                        <input value="Log In" tabindex="4" type="submit">
+                                        <input value="Log In" class="form-control" tabindex="4" type="submit">
                                     </label>
                                 </td>
                             </tr>
@@ -91,8 +91,12 @@
             <li>
                 <a ui-sref="posts" onclick='$("#menu-close").click();'>Posts</a>
             </li>
+            <li>
+                <a ui-sref="aboutus" onclick='$("#menu-close").click();'>About Us</a>
+            </li>
         </ul>
     </nav>
+    
     <!-- Views are injected here -->
     <div ui-view></div>
 
@@ -137,10 +141,13 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="javascript/nativeJS.js"></script>
+    <script src="bower_components/handlebars/handlebars.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 	<script src="javascript/app.js"></script>
     <script src="javascript/controller/indexController.js"></script>
+    <script src="javascript/controller/aboutusController.js"></script>
+    <script src="javascript/controller/loginController.js"></script>
 </body>
 
 </html>

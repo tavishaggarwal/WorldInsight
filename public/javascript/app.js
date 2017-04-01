@@ -20,6 +20,10 @@
             url: '/posts',
             templateUrl: 'templates/posts.html'
         })
+        .state('aboutus', {
+            url: '/aboutus',
+            templateUrl: 'templates/aboutus.html'
+        })
     $locationProvider.html5Mode(true);
     });
     

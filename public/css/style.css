@@ -1,12 +1,29 @@
+/* home page */
+a:hover,
+a:visited,
+a:link,
+a:active {
+  text-decoration: none;
+}
+.logo {
+  color: #fff;
+  font-size: 34px;
+  position: relative;
+  top: 10px;
+}
 .login-header {
   top: 0;
   left: 0;
-  height: 85px;
   background-color: #337ab7;
   border-bottom: 1px solid #3b5998;
+  padding-bottom: 15px;
 }
 .login-header .row {
   margin-top: 5px;
+}
+.signUp-form {
+  position: relative;
+  top: 10px;
 }
 .signUp-form label {
   color: #fff;
@@ -19,10 +36,29 @@
   margin-bottom: 0;
 }
 .signUp-form .login input {
-  background-color: #337ab7;
   border-color: #3b5998;
 }
 #menu-toggle,
 #sidebar-wrapper {
   top: 0;
+}
+/* About us */
+.aboutus {
+  background: url(../images/Aboutus.png) no-repeat center center scroll;
+}
+.aboutus .content {
+  text-align: center;
+  color: #fff;
+  position: absolute;
+  top: 30%;
+}
+.aboutus .content .heading {
+  font-weight: 600;
+}
+.aboutus .content .sub-content {
+  font-size: 22px;
+}
+/* Sign Up Page */
+.disclaimer {
+  font-size: 11px;
 }

@@ -1,1 +1,49 @@
-Sign up here
+<div class="row signup" ng-controller="loginController">
+    <div class="container" ng-init="init()">
+        <div class="col-md-6">
+            <h1>Login</h1>
+            <form>
+              <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" class="form-control" id="email">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd">
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox"> Remember me</label>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h1>Create an Account</h1>
+            <form>
+              <div class="form-group">
+                <label for="firstname">First Name:</label>
+                <input type="text" class="form-control" id="firstname">
+                
+                <label for="lastname">Last Name:</label>
+                <input type="text" class="form-control" id="lastname">
+              </div>
+              <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" class="form-control" id="email">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Confirm Password:</label>
+                <input type="password" class="form-control" id="pwd">
+              </div>
+                <div class="form-group disclaimer">
+                <p>By clicking Join World Insight, you agree to our Terms and confirm that you have read our Data Policy. You may receive welcome SMS message notifications from World Insight.</p>
+                </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
