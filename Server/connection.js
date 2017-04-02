@@ -1,41 +1,44 @@
-var cfenv = require("cfenv");
-var mydb;
+var mongo = {};
+var mongoose = require('mongoose');
+var cfenv = require('cfenv');
+var appenv = cfenv.getAppEnv();
+var services = appenv.services;
+var mongodb_services = services["compose-for-mongodb"];
 
-// load local VCAP configuration  and service credentials
-var vcapLocal;
-
-var connectDatabase = function () {
-    try {
-      vcapLocal = require('./vcap-local.json');
-      console.log("Loaded local VCAP", vcapLocal);
-    } catch (e) { }
-
-    const appEnvOpts = vcapLocal ? { vcap: vcapLocal} : {}
-
-    const appEnv = cfenv.getAppEnv(appEnvOpts);
-
-    if (appEnv.services['cloudantNoSQLDB']) {
-      // Load the Cloudant library.
-      var Cloudant = require('cloudant');
-
-      // Initialize database with credentials
-      var cloudant = Cloudant(appEnv.services['cloudantNoSQLDB'][0].credentials);
-
-      //database name
-      var dbName = 'worldinsight';
-
-      // Create a new "WorldInsight" database.
-
-      // cloudant.db.create(dbName, function(err, data) {
-      //   if(!err) //err if database doesn't already exists
-      //     console.log("Created database: " + dbName);
-      //     else{
-      //       console.log(err);
-      //     }
-      // });
-
-      // Specify the database we are going to use (WorldInsight)...
-      mydb = cloudant.db.use(dbName);
-    }
+if (mongodb_services) {
+    var credentials = mongodb_services[0].credentials;
+    var ca = [new Buffer(credentials.ca_certificate_base64, 'base64')];
+    mongo.url = credentials.uri;
+    
+    mongo.options = {
+        mongos: {
+            ssl: true,
+            sslValidate: true,
+            sslCA: ca,
+            poolSize: 1,
+            reconnectTries: 1
+        }
+    };
+} else {
+    mongo = {
+        "url" : "mongodb://localhost:27017/WorldInsight",
+        "options": {}
+    };
 }
+
+// Function to connect to mongoDB
+var connectDatabase = function () {
+    'use strict';
+    mongoose.connect(mongo.url,mongo.options);
+    var db = mongoose.connection;
+    
+    // If the connection throws an error
+    db.on('error', console.error.bind(console, 'connection error:'));
+    
+    db.once('open', function () {
+        // We're connected!
+        console.log("connected to database");
+    });
+};
+                    
 module.exports = connectDatabase;
