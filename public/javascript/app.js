@@ -1,7 +1,7 @@
 (function () {
 
     'use strict';
-    var worldInsight = angular.module('WorldInsight', ['ui.router']);
+    var worldInsight = angular.module('WorldInsight', ['ui.router','ngResource']);
 
     worldInsight.config(function($stateProvider, $urlRouterProvider,$locationProvider) {
     

@@ -32,13 +32,13 @@
 </head>
 
 <body ng-app="WorldInsight">
-    <div id="top" class="login-header">
+    <div id="top" class="login-header" ng-controller="loginController">
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
                     <a ui-sref="home"><span class="logo">World Insight</span></a>
                 </div>
-                <div class="col-md-5 signUp-form">
+                <form class="col-md-5 signUp-form" name="loginInfo">
                     <table cellspacing="0">
                         <tbody>
                             <tr>
@@ -51,15 +51,17 @@
                             </tr>
                             <tr class="form-group">
                                 <td>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email..">
+                                    <input type="email" class="form-control" name="email" ng-model="loginInfo.username" placeholder="Enter Email..">
                                 </td>
                                 <td>
-                                    <input type="password" class="form-control" name="pass" id="pass" placeholder="Enter Password..">
+                                    <input type="password" class="form-control" name="pass" ng-model="loginInfo.password" placeholder="Enter Password..">
                                 </td>
                                 <td>
                                     <label id="loginbutton" class="login">
-                                        <input value="Log In" class="form-control" tabindex="4" type="submit">
+                                        <input value="Log In" class="form-control" tabindex="4" type="submit" ng-click="login($event)" ng-disabled="loginInfo.$invalid" id="indexForm">
                                     </label>
+                                    
+                                <img src="../images/loading.gif" alt="Loading.." class="loading-small hidden" id="signIn"/>
                                 </td>
                             </tr>
                             <tr>
@@ -70,7 +72,7 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
+                </form>
             </div> <!-- End of class row -->
         </div>
     </div>
@@ -145,10 +147,12 @@
     <script src="bower_components/handlebars/handlebars.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
 	<script src="javascript/app.js"></script>
     <script src="javascript/controller/indexController.js"></script>
     <script src="javascript/controller/aboutusController.js"></script>
     <script src="javascript/controller/loginController.js"></script>
+    <script src="javascript/services/services.js"></script>
 </body>
 
 </html>

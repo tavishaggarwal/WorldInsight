@@ -1,3 +1,4 @@
 vcap-local.json
 node_modules
 bower_components
+Server/config.js
