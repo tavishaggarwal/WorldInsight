@@ -1,8 +1,8 @@
 {
-  "name": "get-started-node",
+  "name": "worldinsight",
   "main": "server.js",
-  "description": "An introduction to developing Node.js apps on the Bluemix platform",
-  "version": "0.1.1",
+  "description": "An app developed where people collaborate together with same motive to make their country/world a better place to live.",
+  "version": "1.0.0",
   "private": false,
   "engines": {
     "node": "4.*"
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/IBM-Bluemix/get-started-node"
+    "url": "https://github.com/tavishaggarwal/WorldInsight"
   },
   "dependencies": {
     "body-parser": "^1.16.1",
@@ -29,7 +29,7 @@
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.0.0"
   },
-  "author": "IBM Corp",
+  "author": "Tavish Aggarwal",
   "license": "Apache-2.0",
   "devDependencies": {
     "gulp": "^3.9.1",

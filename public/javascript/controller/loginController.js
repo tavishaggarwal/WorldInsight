@@ -10,10 +10,10 @@
             
             $scope.login = function (element) {
                 var indexPage = false;
-                if(element.target.id) {
+                if (element.target.id) {
                     $('#signIn').removeClass('hidden');
                     indexPage = true;
-                } else{
+                } else {
                 $('#signInForm').removeClass('hidden');
                 }
                 
@@ -21,17 +21,17 @@
                     .$promise.then(
                         function (response) {
                             alert(response.status);
-                            if(indexPage) {
+                            if (indexPage) {
                             $('#signIn').addClass('hidden');
-                            }else{
+                            } else {
                             $('#signInForm').addClass('hidden');
                             }
                         },
                         function (response) {
                             alert(response.data.err.message);
-                            if(indexPage) {
+                            if (indexPage) {
                             $('#signIn').addClass('hidden');
-                            }else{
+                            } else {
                             $('#signInForm').addClass('hidden');
                             }
                         }
