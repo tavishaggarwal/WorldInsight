@@ -14,7 +14,7 @@
                     $('#signIn').removeClass('hidden');
                     indexPage = true;
                 } else {
-                $('#signInForm').removeClass('hidden');
+                    $('#signInForm').removeClass('hidden');
                 }
                 
                 loginFactory.login().save({}, $scope.loginInfo)
@@ -22,17 +22,17 @@
                         function (response) {
                             alert(response.status);
                             if (indexPage) {
-                            $('#signIn').addClass('hidden');
+                                $('#signIn').addClass('hidden');
                             } else {
-                            $('#signInForm').addClass('hidden');
+                                $('#signInForm').addClass('hidden');
                             }
                         },
                         function (response) {
                             alert(response.data.err.message);
                             if (indexPage) {
-                            $('#signIn').addClass('hidden');
+                                $('#signIn').addClass('hidden');
                             } else {
-                            $('#signInForm').addClass('hidden');
+                                $('#signInForm').addClass('hidden');
                             }
                         }
                     );

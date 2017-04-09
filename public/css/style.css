@@ -1,4 +1,9 @@
 /* home page */
+[ng\:cloak],
+[ng-cloak],
+.ng-cloak {
+  display: none !important;
+}
 a:hover,
 a:visited,
 a:link,
@@ -77,4 +82,7 @@ a:active {
   width: 20px;
   height: auto;
   margin-left: 10px;
+}
+.error {
+  color: #a94442;
 }

@@ -1,20 +1,20 @@
 # World-Insight
 
-World Insight is a project which can help citizens to raise their concern about the happening around them. This a portal where people will collaborate together with same motive to make their country/world a better place to live. If someone see anything not right in his/her surroundings, individual can post about it in portal and community will work towards it to make it right.
+World Insight is a project which can help citizens to raise their concern about the happening around them. This a portal where people will collaborate together with same motive to make their country/world a better place to live. If someone sees anything not right in his/her surroundings, the individual can post about it in portal and community will work towards it to make it right.
 
 
 ## Getting Started
 
-This a portal with following set of features in it:
-1.	Login Levels: Admin, Problem Solver, Public
-2.	Non-login users can only view the post posted
-3.	Filters: Country, State, Type of issues
-4.	Add a new post including videos, images
-5.	Comment on a post
-6.	Agree/ disagree with opinion
-7.	Image recognition using Microsoft cognitive services
-8.	Contact forum
-9.	About Us page
+This a portal with following features in it:
+1.    Login Levels: Admin, Problem Solver, Public
+2.    Non-login users can only view the post posted
+3.    Filters: Country, State, Type of issues
+4.    Add a new post including videos, images
+5.    Comment on a post
+6.    Agree/ disagree with opinion
+7.    Image recognition using Microsoft cognitive services
+8.    Contact forum
+9.    About Us page
 
 
 ### Prerequisites
@@ -80,7 +80,7 @@ See also the list of [contributors](https://github.com/tavishaggarwal/WorldInsig
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 ## Acknowledgments
 

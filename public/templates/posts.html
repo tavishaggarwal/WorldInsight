@@ -1,4 +1,8 @@
-Posts
-<div id="post"></div>
-
-<script src="../javascript/handlebars-templates/templates-compile.js"></script>
+<div ng-controller="postController">
+    <div id="post"></div>
+</div>
+<script id="postTemplate" type="text/x-handlebars-template">
+   <div>
+      My name is {{name}}. I am a {{occupation}}.
+   </div>
+</script>

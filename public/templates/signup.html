@@ -1,51 +1,73 @@
 <div class="container signup" ng-controller="loginController">
-    <div class="row" ng-init="init()">
-        <div class="col-md-6">
-            <h1>Login</h1>
-            <form name="loginInfo">
-              <div class="form-group">
-                <label for="email">Email address:</label>
-                <input type="email" class="form-control" ng-model="loginInfo.username">
-              </div>
-              <div class="form-group">
-                <label for="pwd">Password:</label>
-                <input type="password" class="form-control" ng-model="loginInfo.password">
-              </div>
-              <div class="checkbox">
-                <label><input type="checkbox"> Remember me</label>
-              </div>
-              <button type="submit" class="btn btn-default" ng-click="login($event)" ng-disabled="loginInfo.$invalid">Login</button>
-                <img src="../images/loading.gif" alt="Loading.." class="loading-small hidden" id="signInForm"/>
-            </form>
-        </div>
-        <div class="col-md-6">
-            <h1>Create an Account</h1>
-            <form name="userInfo">
-              <div class="form-group">
-                <label for="firstname">First Name:</label>
-                <input type="text" class="form-control" ng-model="userInfo.firstname">
-                
-                <label for="lastname">Last Name:</label>
-                <input type="text" class="form-control" ng-model="userInfo.lastname">
-              </div>
-              <div class="form-group">
-                <label for="email">Email address:</label>
-                <input type="email" class="form-control" ng-model="userInfo.username">
-              </div>
-              <div class="form-group">
-                <label for="pwd">Password:</label>
-                <input type="password" class="form-control" ng-model="userInfo.password">
-              </div>
-              <div class="form-group">
-                <label for="pwd">Confirm Password:</label>
-                <input type="password" class="form-control" ng-model="userInfo.passwordConfirm">
-              </div>
-                <div class="form-group disclaimer">
-                <p>By clicking Join World Insight, you agree to our Terms and confirm that you have read our Data Policy. You may receive welcome SMS message notifications from World Insight.</p>
-                </div>
-              <button type="submit" class="btn btn-default" ng-click="register()" ng-disabled="userInfo.$invalid">Register</button>
-                <img src="../images/loading.gif" alt="Loading.." class="loading-small hidden" id="signUpForm"/>
-            </form>
-        </div>
-    </div>
+   
+   <!-- Login form -->
+   <div class="row" ng-init="init()">
+      <div class="col-md-6">
+         <h1>Login</h1>
+         <form name="loginInfoForm" ng-submit="login($event)" novalidate>
+            <div class="form-group" ng-class="{ 'has-error' : loginInfoForm.username.$error.required && loginInfoForm.username.$dirty }">
+               <label for="email">Email address:</label>
+               <input type="email" name="username" class="form-control" ng-model="loginInfo.username" required>
+               <span ng-show="loginInfoForm.username.$error.required && loginInfoForm.username.$dirty" class="help-block">Your Username is required.</span>
+               <span ng-show="(loginInfoForm.username.$invalid ||
+                  loginInfoForm.username.$error.required) &&
+                  loginInfoForm.username.$dirty"
+                  class="help-block">Enter a valid email address.</span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : loginInfoForm.password.$error.required && loginInfoForm.password.$dirty }">
+               <label for="pwd">Password:</label>
+               <input type="password" name="password" class="form-control" ng-model="loginInfo.password" required>
+               <span ng-show="loginInfoForm.password.$error.required && loginInfoForm.password.$dirty" class="help-block">Your password is required.</span>
+            </div>
+            <div class="checkbox">
+               <label><input type="checkbox">Remember me</label>
+            </div>
+            <button type="submit" class="btn btn-default" ng-disabled="loginInfoForm.$invalid">Login</button>
+            <img src="../images/loading.gif" alt="Loading.." class="loading-small hidden" id="signInForm"/>
+         </form>
+      </div>
+       
+       
+      <!-- Sign Up form -->
+      <div class="col-md-6">
+         <h1>Create an Account</h1>
+         <form name="userInfoFrom" ng-submit="register()" novalidate>
+            <div class="form-group" ng-class="{ 'has-error' : userInfoFrom.firstname.$error.required && userInfoFrom.firstname.$dirty }">
+               <label >First Name:</label>
+               <input type="text" name="firstname" class="form-control" ng-model="userInfo.firstname" required>
+               <span ng-show="userInfoFrom.firstname.$error.required && userInfoFrom.firstname.$dirty" class="help-block">Your First name is required.</span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : userInfoFrom.lastname.$error.required && userInfoFrom.lastname.$dirty }">
+               <label for="lastname">Last Name:</label>
+               <input type="text" name="lastname" class="form-control" ng-model="userInfo.lastname" required>
+               <span ng-show="userInfoFrom.lastname.$error.required && userInfoFrom.lastname.$dirty" class="help-block">Your Last name is required.</span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : userInfoFrom.username.$error.required && userInfoFrom.username.$dirty }">
+               <label for="email">Email address/ Username:</label>
+               <input type="email" name="username" class="form-control" ng-model="userInfo.username" required>
+               <span ng-show="userInfoFrom.username.$error.required && userInfoFrom.username.$dirty" class="help-block">Your Username is required.</span>
+               <span ng-show="(userInfoFrom.username.$invalid ||
+                  userInfoFrom.username.$error.required) &&
+                  userInfoFrom.username.$dirty"
+                  class="help-block">Enter a valid email address.</span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : userInfoFrom.password.$error.required && userInfoFrom.password.$dirty }">
+               <label for="pwd">Password:</label>
+               <input type="password" name="password" class="form-control" ng-model="userInfo.password" required>
+               <span ng-show="userInfoFrom.password.$error.required && userInfoFrom.password.$dirty" class="help-block">Your password is required.</span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : userInfoFrom.passwordConfirm.$error.required && userInfoFrom.passwordConfirm.$dirty}">
+               <label for="pwd">Confirm Password:</label>
+               <input type="password" name="passwordConfirm" class="form-control" ng-model="userInfo.passwordConfirm" ng-pattern="{{userInfo.password}}" required>
+               <span ng-show="userInfoFrom.passwordConfirm.$error.required && userInfoFrom.passwordConfirm.$dirty" class="help-block">Please confirm your password.</span>
+                <span ng-show="userInfoFrom.passwordConfirm.$error.pattern" class="error">Password didn't match.</span>
+            </div>
+            <div class="form-group disclaimer">
+               <p>By clicking Join World Insight, you agree to our Terms and confirm that you have read our Data Policy. You may receive welcome SMS message notifications from World Insight.</p>
+            </div>
+            <button type="submit" class="btn btn-default" ng-disabled="userInfoFrom.$invalid">Register</button>
+            <img src="../images/loading.gif" alt="Loading.." class="loading-small hidden" id="signUpForm"/>
+         </form>
+      </div>
+   </div>
 </div>
