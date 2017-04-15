@@ -1,9 +1,14 @@
 /* home page */
 @signup-color: #337ab7;
 @signup-border-color: #3b5998;
+@color: #fff;
 
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none !important;
+}
+
+.tooltip{
+     position: fixed;
 }
 
 a:hover, a:visited, a:link, a:active
@@ -26,7 +31,7 @@ a:hover, a:visited, a:link, a:active
 }
 
 .logo{
-    color: #fff;
+    color: @color;
     font-size: 34px;
     position: relative;
     top: 10px;
@@ -47,7 +52,7 @@ a:hover, a:visited, a:link, a:active
     top: 10px;
     
     label{
-        color: #fff;
+        color: @color;
         font-weight: normal;
     }
     
@@ -62,6 +67,10 @@ a:hover, a:visited, a:link, a:active
     }
 }
 
+#forgot-pass{
+    cursor: pointer;
+    color: @color;
+}
 #menu-toggle, #sidebar-wrapper{
     top: 0;
 }
@@ -98,4 +107,52 @@ a:hover, a:visited, a:link, a:active
 
 .error {
     color: #a94442;
+}
+
+#post {
+    overflow: hidden;
+padding-bottom: 20px;
+}
+/* Post Page */
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    overflow: hidden;
+    padding-left: 0;
+    margin: 30px 50px 0 30px;
+    .post-description{
+        padding: 20px;
+            .title{    
+                font-size: 20px;
+                font-weight: 500;
+    }
+}
+            .post-like{
+            .comments {
+                    display: inline-flex;
+        }
+    }
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.post-image{
+   padding: 0;
+    img{
+            height:150px;
+    width:auto;
+    }
+}
+
+#post .container {
+    margin-top: 10px;
+}
+
+.truncate {
+  width: initial;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

@@ -1,0 +1,10 @@
+(function () {
+    'use strict';
+    angular.module('WorldInsight').controller('homeController', ['$window', function ($window) {
+        var init = (function () {
+            // Scroll to top of page
+            $window.scrollTo(0, 0);
+            getTemplateAjax("../templates/post-template.handlebars");
+        }());
+    }]);
+}());

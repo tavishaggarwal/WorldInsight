@@ -45,7 +45,7 @@
                            <td ng-class="{ 'has-error' : IndexloginInfoForm.username.$error.required && IndexloginInfoForm.username.$dirty }">
                               <input type="email" class="form-control" name="username" ng-model="loginInfo.username" placeholder="Enter Email.." required>
                            </td>
-                           <td ng-cloak ng-class="{ 'has-error' : IndexloginInfoForm.password.$error.required && IndexloginInfoForm.password.$dirty }">
+                           <td ng-class="{ 'has-error' : IndexloginInfoForm.password.$error.required && IndexloginInfoForm.password.$dirty }">
                               <input type="password" class="form-control" name="password" ng-model="loginInfo.password" placeholder="Enter Password.." required>
                            </td>
                            <td>
@@ -64,7 +64,7 @@
                                  class="error">Enter a valid email address.</div>
                            </td>
                            <td>
-                              <label>Forgotten account?</label>
+                              <a href="#" id="forgot-pass">Forgotten account?</a>
                               <div ng-cloak ng-show="IndexloginInfoForm.password.$error.required && IndexloginInfoForm.password.$dirty" class="error">Your password is required.</div>
                            </td>
                         </tr>
@@ -99,7 +99,7 @@
       </nav>
       <img src="images/loading.gif" alt="loading" class="page-loading"/>
       <!-- Views are injected here -->
-      <div ui-view></div>
+      <div ui-view id="ui-view"></div>
       <!-- Footer -->
       <footer>
          <div class="container">
@@ -136,10 +136,12 @@
       </footer>
       <!-- jQuery -->
       <script src="bower_components/jquery/dist/jquery.js"></script>
+       <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
       <!-- Bootstrap Core JavaScript -->
-      <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+      <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>  
       <script src="javascript/nativeJS.js"></script>
       <script src="bower_components/handlebars/handlebars.min.js"></script>
+       <script src="javascript/hadlebarHelpers.js"></script>
       <script src="bower_components/angular/angular.min.js"></script>
       <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
       <script src="bower_components/angular-resource/angular-resource.min.js"></script>
@@ -148,6 +150,7 @@
       <script src="javascript/controller/aboutusController.js"></script>
       <script src="javascript/controller/loginController.js"></script>
        <script src="javascript/controller/postController.js"></script>
+       <script src="javascript/controller/homeController.js"></script>
       <script src="javascript/services/services.js"></script>
    </body>
 </html>
