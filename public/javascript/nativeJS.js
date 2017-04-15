@@ -35,28 +35,3 @@
             }
         }
     });
-
-var getTemplateAjax = function (path) {
-    $http = angular.injector(["ng"]).get("$http");
-    $http({
-      method: 'GET',
-      url: path
-    }).then(function successCallback(response) {
-    source = response.data;
-                    templateScript = Handlebars.compile(source);
-                    // Replace context with the get call to the server
-                    context = {
-                        post: [
-                            { title: 'The quick brown fox jumps over the lazy dog.  The quick brown fox jumps over the lazy dog.  The quick brown fox jumps over the lazy dog.  The quick brown fox jumps over the lazy dog.  The quick brown fox jumps over the lazy dog.', description: 'The quick brown fox jumps over the lazy dog.  The quick brown fox jumps over the lazy dog.  The quick brown fox jumps over the lazy dog.  The quick brown fox jumps over the lazy dog.  The quick brown fox jumps over the lazy dog.' },
-                            { title: 'Peter', description: 'Griffin' },
-                            { title: 'Eric', description: 'Cartman' },
-                            { title: 'Kenny', description: 'McCormick' },
-                            { title: 'Bart', description: 'Simpson' }
-                        ]
-                    };
-                    var html = templateScript(context);
-                    $("#post").append(html);
-      }, function errorCallback(response) {
-            console.log(response);
-      });
-};
