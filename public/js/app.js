@@ -1,9 +1,9 @@
 (function () {
 
     'use strict';
-    var worldInsight = angular.module('WorldInsight', ['ui.router','ngResource']);
+    var worldInsight = angular.module('WorldInsight', ['ui.router', 'ngResource']);
 
-    worldInsight.config(function($stateProvider, $urlRouterProvider,$locationProvider) {
+    worldInsight.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     
     $urlRouterProvider.otherwise('/home');
     
@@ -23,7 +23,7 @@
         .state('aboutus', {
             url: '/aboutus',
             templateUrl: 'templates/aboutus.html'
-        })
+        });
     $locationProvider.html5Mode(true);
     });
     
@@ -31,7 +31,8 @@
 
     $rootScope
         .$on('$stateChangeStart', 
-            function(event, toState, toParams, fromState, fromParams){ 
+            function (event, toState, toParams, fromState, fromParams) { 
+                $("#ui-view").html("");
                 $(".page-loading").removeClass("hidden");
         });
 

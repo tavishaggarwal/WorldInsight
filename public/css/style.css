@@ -4,6 +4,9 @@
 .ng-cloak {
   display: none !important;
 }
+.tooltip {
+  position: fixed;
+}
 a:hover,
 a:visited,
 a:link,
@@ -55,6 +58,10 @@ a:active {
 .signUp-form .login input {
   border-color: #3b5998;
 }
+#forgot-pass {
+  cursor: pointer;
+  color: #fff;
+}
 #menu-toggle,
 #sidebar-wrapper {
   top: 0;
@@ -85,4 +92,48 @@ a:active {
 }
 .error {
   color: #a94442;
+}
+#post {
+  overflow: hidden;
+  padding-bottom: 20px;
+}
+/* Post Page */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  overflow: hidden;
+  padding-left: 0;
+  margin: 30px 50px 0 30px;
+}
+.card .post-description {
+  padding: 20px;
+}
+.card .post-description .title {
+  font-size: 20px;
+  font-weight: 500;
+}
+.card .post-like .comments {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.post-image {
+  padding: 0;
+}
+.post-image img {
+  height: 150px;
+  width: auto;
+}
+#post .container {
+  margin-top: 10px;
+}
+.truncate {
+  width: initial;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

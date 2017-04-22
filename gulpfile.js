@@ -1,6 +1,11 @@
 var gulp = require('gulp');
 var _ = require('lodash');
 var $ = require('gulp-load-plugins')({lazy: true});
+var path = require('path'),
+wrap = require('gulp-wrap'),
+declare = require('gulp-declare'),
+concat = require('gulp-concat'),
+    handlebars = require('gulp-handlebars');
 
 gulp.task('styles', function() {
     //log('Compiling Less --> CSS');
@@ -12,10 +17,24 @@ gulp.task('styles', function() {
         .pipe(gulp.dest("public/css"));
 });
 
-gulp.task('less-watcher', function() {
+gulp.task('watcher', function() {
     gulp.watch(["public/less/*.less"], ['styles']);
+    gulp.watch('public/templates/*.hbs', ['templates']);
 });
 
+gulp.task('templates', function () {
+  gulp.src('public/templates/*.hbs')
+    .pipe(handlebars({
+      handlebars: require('handlebars')
+    }))
+    .pipe(wrap('Handlebars.template(<%= contents %>)'))
+    .pipe(declare({
+      namespace: 'WorldInsight.templates',
+      noRedeclare: true,
+    }))
+    .pipe(concat('templates.js'))
+    .pipe(gulp.dest('public/js/'));
+});
 
 function log(msg) {
     if (typeof(msg) === 'object') {
