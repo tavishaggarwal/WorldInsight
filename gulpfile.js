@@ -33,7 +33,7 @@ gulp.task('templates', function () {
       noRedeclare: true,
     }))
     .pipe(concat('templates.js'))
-    .pipe(gulp.dest('public/javascript/'));
+    .pipe(gulp.dest('public/js/'));
 });
 
 function log(msg) {

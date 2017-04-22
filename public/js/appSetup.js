@@ -16,7 +16,6 @@
         if ($(this).scrollTop() > 250) {
             if (!fixed) {
                 fixed = true;
-                // $('#to-top').css({position:'fixed', display:'block'});
                 $('#to-top').show("slow", function() {
                     $('#to-top').css({
                         position: 'fixed',

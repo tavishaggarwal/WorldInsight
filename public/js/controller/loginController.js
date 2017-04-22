@@ -1,8 +1,7 @@
 (function () {
     'use strict';
-    angular.module('WorldInsight')
-        
-        .controller('loginController',  ['$window', '$scope', 'loginFactory', function ($window, $scope, loginFactory) {
+    var loginController = function ($window, $scope, loginFactory) {
+           
             var init = (function () {
                 // Scroll to top of page
                 $window.scrollTo(0, 0);
@@ -52,6 +51,9 @@
                         }
                     );
             };
-        }]);
+        };
     
+    angular.module('WorldInsight').controller('loginController', loginController);
+    
+    loginController.$inject = ['$window', '$scope', 'loginFactory'];
 }());

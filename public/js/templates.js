@@ -15,7 +15,7 @@ this["WorldInsight"]["templates"]["post"] = Handlebars.template({"1":function(co
     + alias2(alias1((depth0 != null ? depth0.likeCount : depth0), depth0))
     + "</li>\n                         <li>&nbsp;|&nbsp;</li>\n                         <li class=\"comments-count\">Comments: "
     + alias2(alias1((depth0 != null ? depth0.commentCount : depth0), depth0))
-    + "</li>\n                    </ul>\n                         \n                        <i class=\"fa fa-thumbs-up fa-2x\" aria-hidden=\"true\"></i>\n                    </div>\n                </div>\n            </div>   \n        </div>\n";
+    + "</li>\n                    </ul>\n                        <i class=\"fa fa-thumbs-up fa-2x\" aria-hidden=\"true\"></i>\n                    </div>\n                </div>\n            </div>   \n        </div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 

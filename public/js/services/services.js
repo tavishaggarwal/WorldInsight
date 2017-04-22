@@ -13,5 +13,19 @@
             };
             
             return login;
+        }])
+    
+            .factory('postFactory', ['$resource', function ($resource) {
+            var posts = {};
+            
+            posts.getPosts = function () {
+                return $resource('/post');
+            };
+            
+            posts.addPosts = function () {
+                return $resource('/post/add');
+            };
+            
+            return posts;
         }]);
 }());
