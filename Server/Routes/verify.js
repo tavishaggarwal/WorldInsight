@@ -41,10 +41,10 @@ exports.verifyAdmin = function (req, res, next) {
     'use strict';
     var err;
     if (req.decoded) {
-        if (req.decoded._doc.admin) {
+        
+        if (req.decoded.admin) {
             return next();
         }
-
         err = new Error('You are not an admin!');
     } else {
         err = new Error('You are not authenticated!');

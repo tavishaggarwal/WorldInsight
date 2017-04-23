@@ -1,5 +1,16 @@
 this["WorldInsight"] = this["WorldInsight"] || {};
 this["WorldInsight"]["templates"] = this["WorldInsight"]["templates"] || {};
+this["WorldInsight"]["templates"]["failure"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var alias1=container.lambda, alias2=container.escapeExpression;
+
+  return "<div class=\"ngdialog-message\">\n    <div>\n        <h3>"
+    + alias2(alias1((depth0 != null ? depth0.errormessage : depth0), depth0))
+    + "</h3>\n    </div>\n    <div>\n        <p>"
+    + alias2(alias1((depth0 != null ? depth0.responseMessage : depth0), depth0))
+    + "</p>\n        <p>"
+    + alias2(alias1((depth0 != null ? depth0.responseData : depth0), depth0))
+    + "</p>\n    </div>\n    <div class=\"ngdialog-buttons\">\n        <button type=\"button\" class=\"ngdialog-button ngdialog-button-primary\" ng-click=confirm(\"OK\")>OK</button>\n    </div>";
+},"useData":true});
 this["WorldInsight"]["templates"]["post"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
     var alias1=container.lambda, alias2=container.escapeExpression;
 

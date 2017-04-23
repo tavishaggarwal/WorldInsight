@@ -16,6 +16,8 @@
       <!-- Custom Fonts -->
       <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
       <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+      <link href="bower_components/ng-dialog/css/ngDialog.css" rel="stylesheet" type="text/css">
+      <link href="bower_components/ng-dialog/css/ngDialog-theme-default.min.css" rel="stylesheet" type="text/css">
       <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
       <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
       <!--[if lt IE 9]>
@@ -24,116 +26,13 @@
       <![endif]-->
    </head>
    <body ng-app="WorldInsight">
-      <div id="top" class="login-header" ng-controller="loginController">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-7">
-                  <a ui-sref="home"><span class="logo">World Insight</span></a>
-               </div>
-               <form class="col-md-5 signUp-form" name="IndexloginInfoForm" ng-submit="login($event)" id="indexForm" novalidate>
-                  <table cellspacing="0">
-                     <tbody>
-                        <tr>
-                           <td >
-                              <label for="email">Email or Phone</label>
-                           </td>
-                           <td >
-                              <label for="pass">Password</label>
-                           </td>
-                        </tr>
-                        <tr class="form-group">
-                           <td ng-class="{ 'has-error' : IndexloginInfoForm.username.$error.required && IndexloginInfoForm.username.$dirty }">
-                              <input type="email" class="form-control" name="username" ng-model="loginInfo.username" placeholder="Enter Email.." required>
-                           </td>
-                           <td ng-class="{ 'has-error' : IndexloginInfoForm.password.$error.required && IndexloginInfoForm.password.$dirty }">
-                              <input type="password" class="form-control" name="password" ng-model="loginInfo.password" placeholder="Enter Password.." required>
-                           </td>
-                           <td>
-                              <label id="loginbutton" class="login">
-                              <input type="submit" value="Log In" class="form-control" tabindex="4" ng-disabled="IndexloginInfoForm.$invalid">
-                              </label>
-                              <img src="../images/loading.gif" alt="Loading.." class="loading-small hidden" id="signIn"/>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>
-                              <span ng-cloak ng-show="IndexloginInfoForm.username.$error.required && IndexloginInfoForm.username.$dirty" class="error">Your Username is required.</span>
-                              <div ng-cloak ng-show="(IndexloginInfoForm.username.$invalid ||
-                                 IndexloginInfoForm.username.$error.required) &&
-                                 IndexloginInfoForm.username.$dirty"
-                                 class="error">Enter a valid email address.</div>
-                           </td>
-                           <td>
-                              <a href="#" id="forgot-pass">Forgotten account?</a>
-                              <div ng-cloak ng-show="IndexloginInfoForm.password.$error.required && IndexloginInfoForm.password.$dirty" class="error">Your password is required.</div>
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
-               </form>
-            </div>
-            <!-- End of class row -->
-         </div>
-      </div>
-      <!-- Navigation -->
-      <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
-      <nav id="sidebar-wrapper">
-         <ul class="sidebar-nav">
-            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-            <li class="sidebar-brand">
-               <a ui-sref="home" onclick='$("#menu-close").click();'>World Insight</a>
-            </li>
-            <li>
-               <a ui-sref="home" onclick='$("#menu-close").click();'>Home</a>
-            </li>
-            <li>
-               <a ui-sref="signup" onclick='$("#menu-close").click();'>Sign Up/ Login</a>
-            </li>
-            <li>
-               <a ui-sref="posts" onclick='$("#menu-close").click();'>Posts</a>
-            </li>
-            <li>
-               <a ui-sref="aboutus" onclick='$("#menu-close").click();'>About Us</a>
-            </li>
-         </ul>
-      </nav>
+
       <img src="images/loading.gif" alt="loading" class="page-loading"/>
       <!-- Views are injected here -->
-      <div ui-view id="ui-view"></div>
-      <!-- Footer -->
-      <footer>
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-10 col-lg-offset-1 text-center">
-                  <h4><strong>World Insight</strong>
-                  </h4>
-                  <p>172 Hyderabad, India</p>
-                  <ul class="list-unstyled">
-                     <li><i class="fa fa-phone fa-fw"></i> (999) 999-9999</li>
-                     <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:tavishaggarwal1993@gmail.com">tavishaggarwal1993@gmail.com</a>
-                     </li>
-                  </ul>
-                  <br>
-                  <ul class="list-inline">
-                     <li>
-                        <a href="https://www.facebook.com/tavish.aggarwal" target="_blank"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-                     </li>
-                     <li>
-                        <a href="https://twitter.com/club_developer" target="_blank"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-                     </li>
-                     <li>
-                        <a href="https://github.com/tavishaggarwal" target="_blank"><i class="fa fa-github fa-fw fa-3x"></i></a>
-                     </li>
-                  </ul>
-                  <hr class="small">
-                  <p class="text-muted">Copyright &copy; World Insight 2017</p>
-               </div>
-            </div>
-         </div>
-         <span ng-controller="indexController">
-         <a id="to-top" ng-click= "scrollTo('top')" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
-         </span>
-      </footer>
+       <div ui-view="header"></div>
+      <div ui-view="content" ></div>
+       <div ui-view="footer"></div>
+      
        
       <script src="bower_components/jquery/dist/jquery.js"></script>
       <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
@@ -142,10 +41,12 @@
       <script src="bower_components/angular/angular.min.js"></script>
       <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
       <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+       <script src="bower_components/ng-dialog/js/ngDialog.min.js"></script>
       <script src="js/appSetup.js"></script> 
       <script src="js/hadlebarHelpers.js"></script>
       <script src="js/templates.js"></script>
       <script src="js/app.js"></script>
+      <script src="js/controller/headerController.js"></script>
       <script src="js/controller/indexController.js"></script>
       <script src="js/controller/aboutusController.js"></script>
       <script src="js/controller/loginController.js"></script>

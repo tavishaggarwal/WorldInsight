@@ -1,30 +1,58 @@
 (function () {
 
     'use strict';
-    var worldInsight = angular.module('WorldInsight', ['ui.router', 'ngResource']);
+    var worldInsight = angular.module('WorldInsight', ['ui.router', 'ngResource','ngDialog']);
 
     worldInsight.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     
-    $urlRouterProvider.otherwise('/home');
-    
     $stateProvider
-        .state('home', {
-            url: '/home',
-            templateUrl: 'templates/home.html'
+    .state('WorldInsight', {
+                url:'/',
+                views: {
+                    'header': {
+                        templateUrl : 'templates/header.html',
+                        controller :'headerController'
+                    },
+                    'content': {
+                        templateUrl : 'templates/home.html',
+                        controller : 'postController'
+                    },
+                    'footer': {
+                        templateUrl : 'templates/footer.html',
+                    }
+                }
+
+            })
+    .state('WorldInsight.signup', {
+            url: 'signup',
+            views: {
+                    'content@': {
+                        templateUrl : 'templates/signup.html',
+                        controller : 'loginController'
+                    }
+            }
         })
-        .state('signup', {
-            url: '/signup',
-            templateUrl: 'templates/signup.html'
+    .state('WorldInsight.posts', {
+            url: 'posts',
+            views: {
+                    'content@': {
+                        templateUrl : 'templates/posts.html',
+                        controller : 'postController'
+                    }
+            }
         })
-         .state('posts', {
-            url: '/posts',
-            templateUrl: 'templates/posts.html'
-        })
-        .state('aboutus', {
-            url: '/aboutus',
-            templateUrl: 'templates/aboutus.html'
+    .state('WorldInsight.aboutus', {
+            url: 'aboutus',
+            views: {
+                    'content@': {
+                        templateUrl : 'templates/aboutus.html',
+                        controller : 'aboutusController'
+                    }
+            }
         });
-    $locationProvider.html5Mode(true);
+     
+        $urlRouterProvider.otherwise('/');
+        $locationProvider.html5Mode(true);
     });
     
     worldInsight.run(function($rootScope){
@@ -41,7 +69,6 @@
             function(event, toState, toParams, fromState, fromParams){ 
                 $(".page-loading").addClass("hidden");
         });
-
 });
     
 }());
