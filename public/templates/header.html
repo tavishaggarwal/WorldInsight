@@ -5,7 +5,7 @@
                   <a ui-sref="WorldInsight"><span class="logo">World Insight</span></a>
                </div>
                <form class="col-md-5 signUp-form" name="IndexloginInfoForm" ng-submit="login($event)" id="indexForm" novalidate>
-                  <table cellspacing="0">
+                  <table cellspacing="0" ng-hide="loggedIn" >
                      <tbody>
                         <tr>
                            <td >
@@ -45,6 +45,12 @@
                      </tbody>
                   </table>
                </form>
+            <div class="col-md-5">
+                <span class="loginInfo" ng-if="loggedIn == true">
+                   <div>Welcome,<br />{{username}}</div>
+                   <div class="logout" ng-click="logoutUser()">Logout</div>
+                    </span>
+                </div>
             </div>
             <!-- End of class row -->
          </div>

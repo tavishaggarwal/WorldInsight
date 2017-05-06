@@ -53,7 +53,8 @@ router.post('/login', function (req, res, next) {
             res.status(200).json({
                 status: 'Login successful!',
                 success: true,
-                token: token
+                token: token,
+                username: user.firstname
             });
         });
     })(req, res, next);

@@ -19,7 +19,6 @@
             }
             // Calling login service
             loginFactory.login($scope.loginInfo);
-            $('#signIn, #signInForm').addClass('hidden');
         };
 
         $scope.register = function () {

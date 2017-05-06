@@ -27,10 +27,11 @@
    </head>
    <body ng-app="WorldInsight">
 
-      <img src="images/loading.gif" alt="loading" class="page-loading"/>
+      
       <!-- Views are injected here -->
        <div ui-view="header"></div>
-      <div ui-view="content" ></div>
+        <img src="images/loading.gif" alt="loading" class="page-loading"/>
+      <div ui-view="content" id="content"></div>
        <div ui-view="footer"></div>
       
        

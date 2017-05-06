@@ -10,13 +10,22 @@
                 login = {},
                 context = null,
                 rendered = null;
-            
+             
             var useCredentials = function (credentials) {
                 isAuthenticated = true;
                 username = credentials.username;
                 authToken = credentials.token;
                 // Set the token as header for your requests!
                 $http.defaults.headers.common['x-access-token'] = authToken;
+            };
+            
+            var loadUserCredentials = function () {
+                var credentials = JSON.parse($window.localStorage.getItem(TOKEN_KEY));
+                if (credentials) {
+                    if (undefined !== credentials.username) {
+                        useCredentials(credentials);
+                    }
+                }
             };
                 
             var storeUserCredentials = function (credentials) {
@@ -35,7 +44,7 @@
             login.login = function (loginData) {
                 $resource('/users/login/').save(loginData)
                     .$promise.then(
-                        function (response) {  storeUserCredentials({username: loginData.username, token: response.token});
+                        function (response) {  storeUserCredentials({username: response.username, token: response.token});
                             $rootScope.$broadcast('login:Successful');
                                              $window.location.href = '/posts';
                                             },
@@ -49,6 +58,7 @@
                                 };
                             rendered = WorldInsight.templates.failure(context);
                             ngDialog.openConfirm({ template: rendered, plain: 'true'});
+                            $('#signIn, #signInForm').addClass('hidden');
                         }
                     );
             };
@@ -77,6 +87,17 @@
                     .get(function (response) {});
                 destroyUserCredentials();
             };
+            
+            loadUserCredentials();
+            
+            login.isAuthenticated = function () {
+                return isAuthenticated;
+            };
+    
+            login.getUsername = function () {
+                return username;
+            };
+            
             return login;
         }])
     
