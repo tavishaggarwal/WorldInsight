@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 var Posts = new Schema({
     title: String,
     description: String,
+    imageLocation: String,
     likeCount: {
         type: String,
         default: 0

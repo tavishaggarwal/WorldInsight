@@ -4,9 +4,7 @@ var config = require('../config.js');
 
 exports.getToken = function (user) {
     'use strict';
-    return jwt.sign(user, config.secretKey || process.env.SECRET_KEY, {
-        expiresIn: 3600 // Valid for 1 hour
-    });
+    return jwt.sign(user, config.secretKey || process.env.SECRET_KEY);
 };
 
 exports.verifyOrdinaryUser = function (req, res, next) {

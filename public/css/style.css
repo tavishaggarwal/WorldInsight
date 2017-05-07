@@ -106,7 +106,8 @@ a:active {
 .error {
   color: #a94442;
 }
-#post {
+#post,
+#topPost {
   overflow: hidden;
   padding-bottom: 20px;
 }
@@ -149,4 +150,12 @@ a:active {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.postInput {
+  margin-top: 10px;
+}
+.postInput .addPost {
+  position: relative;
+  float: right;
+  top: 5px;
 }

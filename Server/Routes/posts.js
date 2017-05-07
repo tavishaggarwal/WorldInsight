@@ -20,12 +20,10 @@ router.post('/add', verify.verifyOrdinaryUser, function (req, res) {
         if (err) {
             next(err);
         }
-        console.log('Dish created!');
         var id = post._id;
-        res.writeHead(200, {
-            'Content-Type': 'text/plain'
-        });
-        res.end('Added the post with id: ' + id);
+            res.status(200).json({
+                status: 'Added the post with id: ' + id
+            });
     });
 });
 

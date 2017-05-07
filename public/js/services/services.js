@@ -45,7 +45,6 @@
                 $resource('/users/login/').save(loginData)
                     .$promise.then(
                         function (response) {  storeUserCredentials({username: response.username, token: response.token});
-                            $rootScope.$broadcast('login:Successful');
                                              $window.location.href = '/posts';
                                             },
                         function (response) {

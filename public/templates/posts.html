@@ -1,5 +1,20 @@
-<div>
+<div ng-init = getPosts()>
     <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="postInput" ng-submit="addPost()" ng-if="loggedIn" encType="multipart/form-data">
+                    <h3>What's in your mind?</h3>
+                        <label>Title:</label>
+                        <input type="text" name="postTitle" class="form-control" ng-model='newPost.title' required />
+                        <label>Description: </label>
+                        <textarea placeholder="Explain your concern" class="form-control" rows="2" ng-model='newPost.description' required></textarea>
+                        <label>Image:</label>
+                        <input type="file" name="postImage" id="postImage" uploader="uploader" accept="image/gif, image/jpeg, image/png" />
+                    <span>*Please upload image file only</span>     <button type="submit" class="btn btn-primary addPost" >Add Post</button>
+                    </form>
+            </div>
+        </div>
+        
         <div class="row">
             <div id="post"></div>
         </div>
