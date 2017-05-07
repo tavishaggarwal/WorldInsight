@@ -5,7 +5,7 @@ var Post = require('../Models/Posts');
 
 router.get('/', function (req, res, next) {
     'use strict';
-        Post.find({}, function (err, users) {
+    Post.find({}, function (err, users) {
         if (err) {
             throw err;
         }
@@ -14,19 +14,17 @@ router.get('/', function (req, res, next) {
 });
 
 
-router.post('/add',verify.verifyOrdinaryUser, function (req, res) {
+router.post('/add', verify.verifyOrdinaryUser, function (req, res) {
     'use strict';
     Post.create(req.body, function (err, post) {
-            if (err) {
-                next(err);
-            }
-            console.log('Dish created!');
-            var id = post._id;
-            res.writeHead(200, {
-                'Content-Type': 'text/plain'
+        if (err) {
+            next(err);
+        }
+        var id = post._id;
+            res.status(200).json({
+                status: 'Added the post with id: ' + id
             });
-            res.end('Added the post with id: ' + id);
-        });
+    });
 });
 
 module.exports = router;

@@ -5,7 +5,7 @@ var User = require('../Models/Users');
 var verify = require('./verify');
 
 /* GET users listing. */
-router.get('/', verify.verifyOrdinaryUser,verify.verifyAdmin, function (req, res, next) {
+router.get('/', verify.verifyOrdinaryUser, verify.verifyAdmin, function (req, res, next) {
     'use strict';
     User.find({}, function (err, users) {
         if (err) {
@@ -48,12 +48,13 @@ router.post('/login', function (req, res, next) {
                 });
             }
             
-            var token = verify.getToken(user);
+            var token = verify.getToken({"username": user.username, "_id": user._id, "admin": user.admin});
 
             res.status(200).json({
                 status: 'Login successful!',
                 success: true,
-                token: token
+                token: token,
+                username: user.firstname
             });
         });
     })(req, res, next);

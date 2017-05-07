@@ -1,0 +1,79 @@
+      <div id="top" class="login-header">
+         <div class="container" ng-controller="loginController">
+            <div class="row">
+               <div class="col-md-7">
+                  <a ui-sref="WorldInsight"><span class="logo">World Insight</span></a>
+               </div>
+               <form class="col-md-5 signUp-form" name="IndexloginInfoForm" ng-submit="login($event)" id="indexForm" novalidate>
+                  <table cellspacing="0" ng-hide="loggedIn" >
+                     <tbody>
+                        <tr>
+                           <td >
+                              <label for="email">Email or Phone</label>
+                           </td>
+                           <td >
+                              <label for="pass">Password</label>
+                           </td>
+                        </tr>
+                        <tr class="form-group">
+                           <td ng-class="{ 'has-error' : IndexloginInfoForm.username.$error.required && IndexloginInfoForm.username.$dirty }">
+                              <input type="email" class="form-control" name="username" ng-model="loginInfo.username" placeholder="Enter Email.." required>
+                           </td>
+                           <td ng-class="{ 'has-error' : IndexloginInfoForm.password.$error.required && IndexloginInfoForm.password.$dirty }">
+                              <input type="password" class="form-control" name="password" ng-model="loginInfo.password" placeholder="Enter Password.." required>
+                           </td>
+                           <td>
+                              <label id="loginbutton" class="login">
+                              <input type="submit" value="Log In" class="form-control" tabindex="4" ng-disabled="IndexloginInfoForm.$invalid">
+                              </label>
+                              <img src="../images/loading.gif" alt="Loading.." class="loading-small hidden" id="signIn"/>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <span ng-cloak ng-show="IndexloginInfoForm.username.$error.required && IndexloginInfoForm.username.$dirty" class="error">Your Username is required.</span>
+                              <div ng-cloak ng-show="(IndexloginInfoForm.username.$invalid ||
+                                 IndexloginInfoForm.username.$error.required) &&
+                                 IndexloginInfoForm.username.$dirty"
+                                 class="error">Enter a valid email address.</div>
+                           </td>
+                           <td>
+                              <a href="#" id="forgot-pass">Forgotten account?</a>
+                              <div ng-cloak ng-show="IndexloginInfoForm.password.$error.required && IndexloginInfoForm.password.$dirty" class="error">Your password is required.</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </form>
+            <div class="col-md-5">
+                <span class="loginInfo" ng-if="loggedIn == true">
+                   <div>Welcome,<br />{{username}}</div>
+                   <div class="logout" ng-click="logoutUser()">Logout</div>
+                    </span>
+                </div>
+            </div>
+            <!-- End of class row -->
+         </div>
+      </div>
+      <!-- Navigation -->
+      <a id="menu-toggle" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
+      <nav id="sidebar-wrapper">
+         <ul class="sidebar-nav">
+            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+            <li class="sidebar-brand">
+               <a ui-sref="WorldInsight" onclick='$("#menu-close").click();'>World Insight</a>
+            </li>
+            <li>
+               <a ui-sref="WorldInsight" onclick='$("#menu-close").click();'>Home</a>
+            </li>
+            <li>
+               <a ui-sref="WorldInsight.signup" onclick='$("#menu-close").click();'>Sign Up/ Login</a>
+            </li>
+            <li>
+               <a ui-sref="WorldInsight.posts" onclick='$("#menu-close").click();'>Posts</a>
+            </li>
+            <li>
+               <a ui-sref="WorldInsight.aboutus" onclick='$("#menu-close").click();'>About Us</a>
+            </li>
+         </ul>
+      </nav>

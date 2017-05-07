@@ -23,13 +23,26 @@ a:active {
   margin: 0 auto;
   width: 50px;
   position: relative;
-  top: 55px;
+  top: 50%;
 }
-.logo {
+.logo,
+.loginInfo {
   color: #fff;
   font-size: 34px;
   position: relative;
   top: 10px;
+}
+.loginInfo {
+  font-size: 15px;
+  float: right;
+  top: 13px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+.logout {
+  margin-left: 30px;
+  cursor: pointer;
 }
 .login-header {
   top: 0;
@@ -93,7 +106,8 @@ a:active {
 .error {
   color: #a94442;
 }
-#post {
+#post,
+#topPost {
   overflow: hidden;
   padding-bottom: 20px;
 }
@@ -136,4 +150,12 @@ a:active {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.postInput {
+  margin-top: 10px;
+}
+.postInput .addPost {
+  position: relative;
+  float: right;
+  top: 5px;
 }

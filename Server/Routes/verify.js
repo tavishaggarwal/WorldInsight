@@ -4,9 +4,7 @@ var config = require('../config.js');
 
 exports.getToken = function (user) {
     'use strict';
-    return jwt.sign(user, config.secretKey || process.env.SECRET_KEY, {
-        expiresIn: 3600 // Valid for 1 hour
-    });
+    return jwt.sign(user, config.secretKey || process.env.SECRET_KEY);
 };
 
 exports.verifyOrdinaryUser = function (req, res, next) {
@@ -41,10 +39,10 @@ exports.verifyAdmin = function (req, res, next) {
     'use strict';
     var err;
     if (req.decoded) {
-        if (req.decoded._doc.admin) {
+        
+        if (req.decoded.admin) {
             return next();
         }
-
         err = new Error('You are not an admin!');
     } else {
         err = new Error('You are not authenticated!');
