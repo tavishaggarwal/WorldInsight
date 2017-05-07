@@ -17,7 +17,7 @@
             .$promise.then(
                 function (response) {
                     context = {post: response};
-                     $.each(context.post.slice(0,4), function(i, data) {
+                     $.each(context.post.slice(0,3), function(i, data) {
              topPostArray.push(data);
         });
                     topPost = {post: topPostArray};
