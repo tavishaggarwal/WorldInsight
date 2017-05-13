@@ -142,6 +142,9 @@ a:active {
   width: 96%;
   padding-right: 2px;
 }
+.card .post-description .editbox {
+  cursor: pointer;
+}
 .card .post-like .comments {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -160,6 +163,9 @@ a:active {
 }
 #post .container {
   margin-top: 10px;
+}
+#addPost {
+  margin-right: 24px;
 }
 .postInput {
   margin-top: 10px;

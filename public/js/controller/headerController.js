@@ -20,7 +20,7 @@
     
         if(loginFactory.isAuthenticated()) {
             $scope.loggedIn = true;
-            $scope.username = loginFactory.getUsername();
+            $scope.username = loginFactory.getDisplayname();
         }
         
         $scope.logoutUser = function () {
