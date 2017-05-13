@@ -21,7 +21,7 @@ a:hover, a:visited, a:link, a:active
   visibility: hidden !important;
 }
 
-.page-loading{
+.page-loading {
     height: auto;
     display: block;
     margin: 0 auto;
@@ -30,7 +30,7 @@ a:hover, a:visited, a:link, a:active
     top: 50%;
 }
 
-.logo, .loginInfo{
+.logo, .loginInfo {
     color: @color;
     font-size: 34px;
     position: relative;
@@ -48,6 +48,7 @@ a:hover, a:visited, a:link, a:active
     margin-left: 30px;
     cursor: pointer;
 }
+
 .login-header {
     top: 0;
     left: 0;
@@ -57,7 +58,7 @@ a:hover, a:visited, a:link, a:active
     .row{
         margin-top: 5px;
     }
-    }
+}
 
 .signUp-form{
     position: relative;
@@ -83,6 +84,7 @@ a:hover, a:visited, a:link, a:active
     cursor: pointer;
     color: @color;
 }
+
 #menu-toggle, #sidebar-wrapper{
     top: 0;
 }
@@ -98,20 +100,20 @@ a:hover, a:visited, a:link, a:active
     
 
         .heading{
-    font-weight: 600;
+            font-weight: 600;
         }
         .sub-content{
             font-size: 22px;
         }
-}
+    }
 }
 
 /* Sign Up Page */
-.disclaimer{
+.disclaimer {
     font-size: 11px;
 }
 
-.loading-small{
+.loading-small {
     width: 20px;
     height: auto;
     margin-left: 10px;
@@ -134,41 +136,48 @@ padding-bottom: 20px;
     padding-left: 0;
     margin: 30px 50px 0 30px;
     min-height: 170px;
-    .post-description{
-        padding: 20px;
-            .title{    
+    .post-description {
+        padding: 20px 0 20px 20px;
+        text-align: left;
+        min-width: inherit;
+            .title {    
                 font-size: 20px;
                 font-weight: 500;
-    }
-}
-            .post-like{
-            .comments {
-                    display: inline-flex;
+            }
+        .row {
+            margin-left:0;
+            padding: 0;
+        }
+        .titlebox, .editbox {
+            float: left;
+        }
+        .titlebox {
+            width: 96%;
+            padding-right: 2px;
         }
     }
+        .post-like {
+            .comments {
+                    display: inline-flex;
+            }
+        }
 }
 
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.post-image{
-   padding: 0;
+.post-image {
+   padding:0 20px 0 0;
+    float: left;
     img{
-            height:150px;
-    width:auto;
+        max-height: 170px;
+        width:auto;
     }
 }
 
 #post .container {
     margin-top: 10px;
-}
-
-.truncate {
-  width: initial;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .postInput {

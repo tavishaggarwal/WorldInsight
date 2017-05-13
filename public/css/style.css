@@ -122,11 +122,25 @@ a:active {
   min-height: 170px;
 }
 .card .post-description {
-  padding: 20px;
+  padding: 20px 0 20px 20px;
+  text-align: left;
+  min-width: inherit;
 }
 .card .post-description .title {
   font-size: 20px;
   font-weight: 500;
+}
+.card .post-description .row {
+  margin-left: 0;
+  padding: 0;
+}
+.card .post-description .titlebox,
+.card .post-description .editbox {
+  float: left;
+}
+.card .post-description .titlebox {
+  width: 96%;
+  padding-right: 2px;
 }
 .card .post-like .comments {
   display: -webkit-inline-box;
@@ -137,20 +151,15 @@ a:active {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 .post-image {
-  padding: 0;
+  padding: 0 20px 0 0;
+  float: left;
 }
 .post-image img {
-  height: 150px;
+  max-height: 170px;
   width: auto;
 }
 #post .container {
   margin-top: 10px;
-}
-.truncate {
-  width: initial;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 .postInput {
   margin-top: 10px;
