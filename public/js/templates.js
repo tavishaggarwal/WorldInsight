@@ -14,13 +14,17 @@ this["WorldInsight"]["templates"]["failure"] = Handlebars.template({"compiler":[
 this["WorldInsight"]["templates"]["post"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
     var alias1=container.lambda, alias2=container.escapeExpression;
 
-  return "     <div class=\"row\">\n        <div class=\"col-md-11 card\">\n            <div class=\"row\">\n                 <div class=\"post-image\">\n                  <img src=\"../images/portfolio-2.jpg\" class=\"img-responsive\" alt=\"Avatar\">\n                </div>\n                 <div class=\"col-md-8 post-description\">\n                     <div class=\"row\">\n                         <div class=\"titlebox\">\n                    <p class=\"title\" data-toggle=\"tooltip\" title=\""
+  return "     <div class=\"row\">\n        <div class=\"col-md-11 card\">\n            <div class=\"row\">\n                 <div class=\"post-image\">\n                  <img src=\"../images/portfolio-2.jpg\" class=\"img-responsive\" alt=\"Avatar\">\n                </div>\n                 <div class=\"col-md-8 post-description\">\n                     <div class=\"row\">\n                        <h4>Posted By: "
+    + alias2(alias1((depth0 != null ? depth0.postedBy : depth0), depth0))
+    + "</h4>\n                     </div>\n                     <div class=\"row\">\n                         <div class=\"titlebox\">\n                    <p class=\"title\" data-toggle=\"tooltip\" title=\""
     + alias2(alias1((depth0 != null ? depth0.title : depth0), depth0))
     + "\">"
     + alias2(alias1((depth0 != null ? depth0.title : depth0), depth0))
     + "</p>\n                             </div>\n                         <div data-id=\""
     + alias2(alias1((depth0 != null ? depth0._id : depth0), depth0))
-    + "\" class=\"editbox\">\n                     <span class=\"glyphicon glyphicon glyphicon-edit hidden editPostIcon\" aria-hidden=\"true\"></span>\n                         </div>\n                         </div>\n                    <p  class=\"description\" data-toggle=\"tooltip\" title=\""
+    + "\" class=\"editbox\">\n                     <span class=\"glyphicon glyphicon glyphicon-edit hidden\" id=\"editPostIcon"
+    + alias2(alias1((depth0 != null ? depth0._id : depth0), depth0))
+    + "\" aria-hidden=\"true\"></span>\n                         </div>\n                         </div>\n                    <p  class=\"description\" data-toggle=\"tooltip\" title=\""
     + alias2(alias1((depth0 != null ? depth0.description : depth0), depth0))
     + "\">"
     + alias2(alias1((depth0 != null ? depth0.description : depth0), depth0))

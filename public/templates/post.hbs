@@ -7,11 +7,14 @@
                 </div>
                  <div class="col-md-8 post-description">
                      <div class="row">
+                        <h4>Posted By: {{this.postedBy}}</h4>
+                     </div>
+                     <div class="row">
                          <div class="titlebox">
                     <p class="title" data-toggle="tooltip" title="{{this.title}}">{{this.title}}</p>
                              </div>
                          <div data-id="{{this._id}}" class="editbox">
-                     <span class="glyphicon glyphicon glyphicon-edit hidden editPostIcon" aria-hidden="true"></span>
+                     <span class="glyphicon glyphicon glyphicon-edit hidden" id="editPostIcon{{this._id}}" aria-hidden="true"></span>
                          </div>
                          </div>
                     <p  class="description" data-toggle="tooltip" title="{{this.description}}">{{this.description}}</p> 

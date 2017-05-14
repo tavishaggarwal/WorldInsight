@@ -37,7 +37,7 @@ router.get("/:id", verify.verifyOrdinaryUser, function(req,res){
     });
 });
 
-router.put('/edit/:id', verify.verifyOrdinaryUser, function (req, res) {
+router.put('/edit/:id', verify.verifyOrdinaryUser, verify.verifyUser, function (req, res) {
     'use strict';
     var id = req.params.id,
         body = req.body;
