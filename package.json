@@ -1,6 +1,6 @@
 {
   "name": "worldinsight",
-  "main": "server.js",
+  "main": "server/server.js",
   "description": "An app developed where people collaborate together with same motive to make their country/world a better place to live.",
   "version": "1.0.0",
   "private": false,
@@ -16,6 +16,8 @@
     "url": "https://github.com/tavishaggarwal/WorldInsight"
   },
   "dependencies": {
+    "@types/angular": "^1.6.17",
+    "@types/angular-ui-router": "^1.1.36",
     "body-parser": "^1.16.1",
     "bower": "^1.8.0",
     "cfenv": "^1.0.x",
