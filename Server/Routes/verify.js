@@ -56,17 +56,22 @@ exports.verifyAdmin = function (req, res, next) {
 exports.verifyUser = function (req, res, next) {
     'use strict';
     var err,
-        id = req.body._id;
-    
+        id = req.params.id ;
     if (req.decoded) {
         Posts.findById(id, function (err, post) {
             
-            if (post.postedBy === req.decoded.username) {
-                return next();
+            if (post) {
+                if (post.postedBy === req.decoded.username) {
+                    return next();
+                } else {
+                    err = new Error('You cannot edit this Post');
+                    err.status = 401;
+                    return next(err);
+                }
             } else {
-                err = new Error('You cannot edit this Post');
-                err.status = 401;
-                return next(err);
+                err = new Error('The post you are looking for is either deleted or doesn\'t exist');
+                    err.status = 401;
+                    return next(err);
             }
         });
     } else {

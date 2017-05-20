@@ -135,15 +135,18 @@ a:active {
   padding: 0;
 }
 .card .post-description .titlebox,
-.card .post-description .editbox {
+.card .post-description .postCustomizebox {
   float: left;
 }
 .card .post-description .titlebox {
-  width: 96%;
+  width: 90%;
   padding-right: 2px;
 }
-.card .post-description .editbox {
+.card .post-description .postCustomizebox {
   cursor: pointer;
+}
+.card .post-description .postCustomizebox .glyphicon-trash {
+  padding-right: 10px;
 }
 .card .post-like .comments {
   display: -webkit-inline-box;

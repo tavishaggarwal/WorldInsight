@@ -41,20 +41,42 @@ router.put('/edit/:id', verify.verifyOrdinaryUser, verify.verifyUser, function (
     'use strict';
     var id = req.params.id,
         body = req.body;
-   Post.findById(id, function(err, post) {
+   Post.findById(id, function(err, editedPost) {
        
     if(err) res.status(400);
     
     // Render not found error
-    if(!post) {
+    if(!editedPost) {
       return res.status(404).json({
         message: 'Post with id ' + id + ' can not be found.'
       });
     }
        
-    post.update(body, function(error, post) {
+    editedPost.update(body, function(error, updatedPost) {
       if(error) res.status(400);
-      res.json(post);
+      res.json(updatedPost);
+    });
+  });
+});
+
+router.delete('/delete/:id', verify.verifyOrdinaryUser, verify.verifyUser, function (req, res) {
+    'use strict';
+    var id = req.params.id,
+        body = req.body;
+   Post.findById(id, function(err, deletedPost) {
+       
+    if(err) res.status(400);
+    
+    // Render not found error
+    if(!deletedPost) {
+      return res.status(404).json({
+        message: 'Post with id ' + id + ' can not be found.'
+      });
+    }
+       
+    deletedPost.remove(body, function(error, postDeleted) {
+      if(error) res.status(400);
+      res.json({ message: 'Post is deleted successfully'});
     });
   });
 });

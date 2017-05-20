@@ -125,6 +125,10 @@
             posts.editPosts = function () {
                 return $resource('/post/edit/:id', {id:'@id'},{'update': { method:'PUT' }});
             };
+
+            posts.deletePosts = function () {
+                return $resource('/post/delete/:id', {id:'@id'},{'delete': { method:'DELETE' }});
+            };
             
             return posts;
         }]);

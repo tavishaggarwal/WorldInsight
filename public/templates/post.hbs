@@ -13,8 +13,9 @@
                          <div class="titlebox">
                     <p class="title" data-toggle="tooltip" title="{{this.title}}">{{this.title}}</p>
                              </div>
-                         <div data-id="{{this._id}}" class="editbox">
-                     <span class="glyphicon glyphicon glyphicon-edit hidden" id="editPostIcon{{this._id}}" aria-hidden="true"></span>
+                         <div class="postCustomizebox">
+                             <span data-id="{{this._id}}" class="glyphicon glyphicon glyphicon-trash hidden deletePost" id="deletePostIcon{{this._id}}" aria-hidden="true"></span>
+                             <span data-id="{{this._id}}" class="glyphicon glyphicon glyphicon-edit hidden editbox" id="editPostIcon{{this._id}}" aria-hidden="true"></span>
                          </div>
                          </div>
                     <p  class="description" data-toggle="tooltip" title="{{this.description}}">{{this.description}}</p> 

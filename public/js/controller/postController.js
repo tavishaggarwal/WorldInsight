@@ -39,7 +39,32 @@
                 });
             });
         };
-        
+
+        var deletePost = function () {
+            var deletePostID;
+            $('.deletePost').click(function () {
+                deletePostID = $(this).data('id');
+
+            postFactory.deletePosts().delete({
+                'id': deletePostID
+            }, {'_id': deletePostID}).$promise.then(function (response) {
+                alert(response.message);
+                $scope.getPosts();
+            }, function (response) {
+                context = {
+                    errormessage: 'Fail to Delete post. ',
+                    responseMessage: response.data.message,
+                    responseData: 'Error Code: ' + response.status
+                };
+                rendered = WorldInsight.templates.failure(context);
+                ngDialog.openConfirm({
+                    template: rendered,
+                    plain: 'true'
+                });
+            });
+            });
+        };
+
         $scope.getPosts = function () {
             topPostArray = [];
             topPost = {};
@@ -66,12 +91,15 @@
                         $.each(context.post, function (key, value) {
                             if (loginFactory.getUsername() === value.postedBy) {
                                 $('#editPostIcon' + value._id).removeClass('hidden');
+                                $('#deletePostIcon' + value._id).removeClass('hidden');
                             }
                         });
                     } else {
                         $('#editPostIcon' + value._id).addClass('hidden');
+                        $('#deletePostIcon' + value._id).addClass('hidden');
                     }
                     editPost();
+                    deletePost();
                 } else {
                     $('#post').html(noPost);
                     $('#topPost').html(noPost);

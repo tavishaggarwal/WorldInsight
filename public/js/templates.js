@@ -20,9 +20,13 @@ this["WorldInsight"]["templates"]["post"] = Handlebars.template({"1":function(co
     + alias2(alias1((depth0 != null ? depth0.title : depth0), depth0))
     + "\">"
     + alias2(alias1((depth0 != null ? depth0.title : depth0), depth0))
-    + "</p>\n                             </div>\n                         <div data-id=\""
+    + "</p>\n                             </div>\n                         <div class=\"postCustomizebox\">\n                             <span data-id=\""
     + alias2(alias1((depth0 != null ? depth0._id : depth0), depth0))
-    + "\" class=\"editbox\">\n                     <span class=\"glyphicon glyphicon glyphicon-edit hidden\" id=\"editPostIcon"
+    + "\" class=\"glyphicon glyphicon glyphicon-trash hidden deletePost\" id=\"deletePostIcon"
+    + alias2(alias1((depth0 != null ? depth0._id : depth0), depth0))
+    + "\" aria-hidden=\"true\"></span>\n                             <span data-id=\""
+    + alias2(alias1((depth0 != null ? depth0._id : depth0), depth0))
+    + "\" class=\"glyphicon glyphicon glyphicon-edit hidden editbox\" id=\"editPostIcon"
     + alias2(alias1((depth0 != null ? depth0._id : depth0), depth0))
     + "\" aria-hidden=\"true\"></span>\n                         </div>\n                         </div>\n                    <p  class=\"description\" data-toggle=\"tooltip\" title=\""
     + alias2(alias1((depth0 != null ? depth0.description : depth0), depth0))
