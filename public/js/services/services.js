@@ -48,6 +48,7 @@
                     .$promise.then(
                         function (response) {
                             storeUserCredentials({username: response.username, displayname:response.displayname, token: response.token});
+                                             $('#signUpForm').addClass('hidden');
                                              $window.location.href = '/posts';
                                             },
                         function (response) {
@@ -80,6 +81,7 @@
                                 };
                             rendered = WorldInsight.templates.failure(context);
                             ngDialog.openConfirm({ template: rendered, plain: 'true'});
+                            $('#signUpForm').addClass('hidden');
                         }
                     );
             };
