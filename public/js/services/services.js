@@ -6,6 +6,7 @@
             var TOKEN_KEY = 'Token',
                 isAuthenticated = false,
                 username = '',
+                displayname = '',
                 authToken,
                 login = {},
                 context = null,
@@ -13,6 +14,7 @@
              
             var useCredentials = function (credentials) {
                 isAuthenticated = true;
+                displayname = credentials.displayname;
                 username = credentials.username;
                 authToken = credentials.token;
                 // Set the token as header for your requests!
@@ -44,7 +46,9 @@
             login.login = function (loginData) {
                 $resource('/users/login/').save(loginData)
                     .$promise.then(
-                        function (response) {  storeUserCredentials({username: response.username, token: response.token});
+                        function (response) {
+                            storeUserCredentials({username: response.username, displayname:response.displayname, token: response.token});
+                                             $('#signUpForm').addClass('hidden');
                                              $window.location.href = '/posts';
                                             },
                         function (response) {
@@ -77,6 +81,7 @@
                                 };
                             rendered = WorldInsight.templates.failure(context);
                             ngDialog.openConfirm({ template: rendered, plain: 'true'});
+                            $('#signUpForm').addClass('hidden');
                         }
                     );
             };
@@ -93,6 +98,10 @@
                 return isAuthenticated;
             };
     
+            login.getDisplayname = function () {
+                return displayname;
+            };
+            
             login.getUsername = function () {
                 return username;
             };
@@ -107,8 +116,20 @@
                 return $resource('/post');
             };
             
+            posts.getPostsByID = function () {
+                return $resource('/post/:id', {id:'@id'});
+            };
+                
             posts.addPosts = function () {
                 return $resource('/post/add');
+            };
+                
+            posts.editPosts = function () {
+                return $resource('/post/edit/:id', {id:'@id'},{'update': { method:'PUT' }});
+            };
+
+            posts.deletePosts = function () {
+                return $resource('/post/delete/:id', {id:'@id'},{'delete': { method:'DELETE' }});
             };
             
             return posts;

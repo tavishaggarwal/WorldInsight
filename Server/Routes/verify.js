@@ -1,4 +1,5 @@
 var User = require('../Models/Users');
+var Posts = require('../Models/Posts');
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('../config.js');
 
@@ -50,4 +51,32 @@ exports.verifyAdmin = function (req, res, next) {
 
     err.status = 401;
     return next(err);
+};
+
+exports.verifyUser = function (req, res, next) {
+    'use strict';
+    var err,
+        id = req.params.id ;
+    if (req.decoded) {
+        Posts.findById(id, function (err, post) {
+            
+            if (post) {
+                if (post.postedBy === req.decoded.username) {
+                    return next();
+                } else {
+                    err = new Error('You cannot edit this Post');
+                    err.status = 401;
+                    return next(err);
+                }
+            } else {
+                err = new Error('The post you are looking for is either deleted or doesn\'t exist');
+                    err.status = 401;
+                    return next(err);
+            }
+        });
+    } else {
+        err = new Error('You are not authenticated!');
+        err.status = 401;
+        return next(err);
+    }
 };

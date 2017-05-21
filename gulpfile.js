@@ -5,7 +5,20 @@ var path = require('path'),
 wrap = require('gulp-wrap'),
 declare = require('gulp-declare'),
 concat = require('gulp-concat'),
-    handlebars = require('gulp-handlebars');
+handlebars = require('gulp-handlebars'),
+browserSync = require('browser-sync').create();
+
+gulp.task('browserSync', function () {
+    browserSync.init({
+        port: 3007, 
+        files: ["public/**/*.*"],
+        proxy: {
+            target: 'localhost:3000',
+            ws: true
+        },
+        browser: "google chrome"
+    });
+});
 
 gulp.task('styles', function() {
     //log('Compiling Less --> CSS');
@@ -17,7 +30,7 @@ gulp.task('styles', function() {
         .pipe(gulp.dest("public/css"));
 });
 
-gulp.task('watcher', function() {
+gulp.task('watcher', ['browserSync'], function() {
     gulp.watch(["public/less/*.less"], ['styles']);
     gulp.watch('public/templates/*.hbs', ['templates']);
 });
@@ -35,6 +48,8 @@ gulp.task('templates', function () {
     .pipe(concat('templates.js'))
     .pipe(gulp.dest('public/js/'));
 });
+
+gulp.task('default',['watcher']);
 
 function log(msg) {
     if (typeof(msg) === 'object') {

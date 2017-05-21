@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var User = require('../Models/Users');
 var verify = require('./verify');
+var Mailsender = require('./../MailSender/signUpVerify');
 
 /* GET users listing. */
 router.get('/', verify.verifyOrdinaryUser, verify.verifyAdmin, function (req, res, next) {
@@ -24,6 +25,14 @@ router.post('/register', function (req, res) {
                 return res.status(500).json({err: err});
             }
             passport.authenticate('local')(req, res, function () {
+                Mailsender.mailOptions = {
+                    from: '"World Insights" <Tavish@WorldInsight.com>',
+                    to: req.body.username, // list of receivers
+                    subject: 'Thanks for Signing Up to World Insight', // Subject line
+                    text: '', // plain text body
+                    html: 'Hello ' +req.body.firstname+',<br /> <p>Thank you for Signing Up to World Insight. Hope you enjoy to be part of community and have a good time here. If you have any questions or comments about the content you’re receiving please email back and we will respond to your inquiry promptly.</p><br />Sincerely,<br />Tavish Aggarwal<br /> Chief Executive Officer- World Insight'
+                };
+                Mailsender.sendMail(Mailsender.mailOptions);
                 return res.status(200).json({status: 'Registration Successful!'});
             });
         });
@@ -54,7 +63,8 @@ router.post('/login', function (req, res, next) {
                 status: 'Login successful!',
                 success: true,
                 token: token,
-                username: user.firstname
+                displayname: user.firstname,
+                username: user.username
             });
         });
     })(req, res, next);

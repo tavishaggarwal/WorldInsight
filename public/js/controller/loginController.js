@@ -24,7 +24,6 @@
         $scope.register = function () {
             $('#signUpForm').removeClass('hidden');
             loginFactory.register($scope.userInfo);
-            $('#signUpForm').addClass('hidden');
         };
         
         $scope.logout = function () {

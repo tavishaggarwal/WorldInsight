@@ -1,21 +1,37 @@
 {{#each post}}
-        <div class="col-md-5 card">
+     <div class="row">
+        <div class="col-md-11 card">
             <div class="row">
-                 <div class="col-md-6 col-sm-4 post-image">
+                 <div class="post-image">
                   <img src="../images/portfolio-2.jpg" class="img-responsive" alt="Avatar">
                 </div>
-                 <div class="col-md-6 col-sm-8 post-description">
-                    <p class="truncate title" data-toggle="tooltip" title="{{this.title}}">{{this.title}}</p>
-                    <p class="truncate" data-toggle="tooltip" title="{{this.description}}">{{this.description}}</p> 
+                 <div class="col-md-8 post-description">
+                     <div class="row">
+                        <h4>Posted By: {{this.postedBy}}</h4>
+                     </div>
+                     <div class="row">
+                         <div class="titlebox">
+                    <p class="title" data-toggle="tooltip" title="{{this.title}}">{{this.title}}</p>
+                             </div>
+                         <div class="postCustomizebox">
+                             <span data-id="{{this._id}}" class="glyphicon glyphicon glyphicon-trash hidden deletePost" id="deletePostIcon{{this._id}}" aria-hidden="true"></span>
+                             <span data-id="{{this._id}}" class="glyphicon glyphicon glyphicon-edit hidden editbox" id="editPostIcon{{this._id}}" aria-hidden="true"></span>
+                         </div>
+                         </div>
+                    <p  class="description" data-toggle="tooltip" title="{{this.description}}">{{this.description}}</p> 
                      <div class="post-like">
-                     <ul class="comments list-unstyled">
-                         <li class="likes-count">Likes: {{this.likeCount}}</li>
-                         <li>&nbsp;|&nbsp;</li>
-                         <li class="comments-count">Comments: {{this.commentCount}}</li>
-                    </ul>
-                        <i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i>
+                         <ul class="comments list-unstyled">
+                             <li class="likes-count">Likes: {{this.likeCount}}</li>
+                             <li>&nbsp;|&nbsp;</li>
+                             <li class="comments-count">Comments: {{this.commentCount}}</li>
+                        </ul>
                     </div>
+                     <div>
+                         <i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i>
+                     </div>
                 </div>
+                </div>
+                <div style="clear: both;"></div>
             </div>   
         </div>
 {{/each}}

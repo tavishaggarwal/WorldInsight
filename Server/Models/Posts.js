@@ -5,6 +5,7 @@ var Posts = new Schema({
     title: String,
     description: String,
     imageLocation: String,
+    postedBy: String,
     likeCount: {
         type: String,
         default: 0

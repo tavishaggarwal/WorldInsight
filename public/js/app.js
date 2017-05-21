@@ -3,7 +3,7 @@
     'use strict';
     var worldInsight = angular.module('WorldInsight', ['ui.router', 'ngResource', 'ngDialog']);
 
-    worldInsight.config(['$stateProvider','$urlRouterProvider',  '$locationProvider', '$qProvider',  function ($stateProvider, $urlRouterProvider, $locationProvider, $qProvider) {
+    worldInsight.config(['$stateProvider', '$urlRouterProvider',  '$locationProvider', '$qProvider',  function ($stateProvider, $urlRouterProvider, $locationProvider, $qProvider) {
         
         $qProvider.errorOnUnhandledRejections(false);
 
@@ -61,12 +61,14 @@
         $rootScope
             .$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
                 $("#content").html('');
+                $("#footer").addClass("hidden");
                 $(".page-loading").removeClass("hidden");
             });
 
         $rootScope
             .$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
                 $(".page-loading").addClass("hidden");
+                $("#footer").removeClass("hidden");
             });
     });
     

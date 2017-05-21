@@ -1,14 +1,14 @@
 {
   "name": "worldinsight",
-  "main": "server.js",
+  "main": "server/server.js",
   "description": "An app developed where people collaborate together with same motive to make their country/world a better place to live.",
   "version": "1.0.0",
   "private": false,
   "engines": {
-    "node": "4.*"
+    "node": "6.*"
   },
   "scripts": {
-    "start": "node ./Server/server.js",
+    "start": "node ./server/server.js",
     "postinstall": "bower install"
   },
   "repository": {
@@ -16,6 +16,8 @@
     "url": "https://github.com/tavishaggarwal/WorldInsight"
   },
   "dependencies": {
+    "@types/angular": "^1.6.17",
+    "@types/angular-ui-router": "^1.1.36",
     "body-parser": "^1.16.1",
     "bower": "^1.8.0",
     "cfenv": "^1.0.x",
@@ -25,6 +27,7 @@
     "jsonwebtoken": "^7.3.0",
     "mongodb": "^2.2.25",
     "mongoose": "^4.9.2",
+    "nodemailer": "^4.0.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.0.0"
@@ -32,6 +35,7 @@
   "author": "Tavish Aggarwal",
   "license": "Apache-2.0",
   "devDependencies": {
+    "browser-sync": "^2.18.8",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-concat": "^2.6.1",
