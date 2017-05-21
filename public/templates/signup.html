@@ -7,7 +7,7 @@
          <form name="loginInfoForm" ng-submit="login($event)" novalidate>
             <div class="form-group" ng-class="{ 'has-error' : loginInfoForm.username.$error.required && loginInfoForm.username.$dirty }">
                <label for="email">Email address:</label>
-               <input type="email" name="username" class="form-control" ng-model="loginInfo.username" required>
+               <input type="email" name="username" class="form-control" ng-model="loginInfo.username" ng-minlength="10" required>
                <span ng-show="loginInfoForm.username.$error.required && loginInfoForm.username.$dirty" class="help-block">Your Username is required.</span>
                <span ng-show="(loginInfoForm.username.$invalid ||
                   loginInfoForm.username.$error.required) &&
@@ -16,7 +16,7 @@
             </div>
             <div class="form-group" ng-class="{ 'has-error' : loginInfoForm.password.$error.required && loginInfoForm.password.$dirty }">
                <label for="pwd">Password:</label>
-               <input type="password" name="password" class="form-control" ng-model="loginInfo.password" required>
+               <input type="password" name="password" class="form-control" ng-model="loginInfo.password" ng-minlength="10" required>
                <span ng-show="loginInfoForm.password.$error.required && loginInfoForm.password.$dirty" class="help-block">Your password is required.</span>
             </div>
             <div class="checkbox">
@@ -34,17 +34,25 @@
          <form name="userInfoFrom" ng-submit="register()" novalidate>
             <div class="form-group" ng-class="{ 'has-error' : userInfoFrom.firstname.$error.required && userInfoFrom.firstname.$dirty }">
                <label >First Name:</label>
-               <input type="text" name="firstname" class="form-control" ng-model="userInfo.firstname" required>
+               <input type="text" name="firstname" class="form-control" ng-model="userInfo.firstname" ng-minlength="5" required>
                <span ng-show="userInfoFrom.firstname.$error.required && userInfoFrom.firstname.$dirty" class="help-block">Your First name is required.</span>
+               <span ng-show="(userInfoFrom.firstname.$invalid ||
+                  userInfoFrom.firstname.$error.required) &&
+                  userInfoFrom.firstname.$dirty"
+                  class="help-block">First name should be greater than 5 characters.</span>
             </div>
             <div class="form-group" ng-class="{ 'has-error' : userInfoFrom.lastname.$error.required && userInfoFrom.lastname.$dirty }">
                <label for="lastname">Last Name:</label>
-               <input type="text" name="lastname" class="form-control" ng-model="userInfo.lastname" required>
+               <input type="text" name="lastname" class="form-control" ng-model="userInfo.lastname" ng-minlength="5" required>
                <span ng-show="userInfoFrom.lastname.$error.required && userInfoFrom.lastname.$dirty" class="help-block">Your Last name is required.</span>
+               <span ng-show="(userInfoFrom.lastname.$invalid ||
+                  userInfoFrom.lastname.$error.required) &&
+                  userInfoFrom.lastname.$dirty"
+                  class="help-block">Last name should be greater than 5 characters.</span>
             </div>
             <div class="form-group" ng-class="{ 'has-error' : userInfoFrom.username.$error.required && userInfoFrom.username.$dirty }">
                <label for="email">Email address/ Username:</label>
-               <input type="email" name="username" class="form-control" ng-model="userInfo.username" required>
+               <input type="email" name="username" class="form-control" ng-model="userInfo.username" ng-minlength="5" required>
                <span ng-show="userInfoFrom.username.$error.required && userInfoFrom.username.$dirty" class="help-block">Your Username is required.</span>
                <span ng-show="(userInfoFrom.username.$invalid ||
                   userInfoFrom.username.$error.required) &&
@@ -53,12 +61,17 @@
             </div>
             <div class="form-group" ng-class="{ 'has-error' : userInfoFrom.password.$error.required && userInfoFrom.password.$dirty }">
                <label for="pwd">Password:</label>
-               <input type="password" name="password" class="form-control" ng-model="userInfo.password" required>
+               <input type="password" name="password" class="form-control" ng-model="userInfo.password" complex-password required>
                <span ng-show="userInfoFrom.password.$error.required && userInfoFrom.password.$dirty" class="help-block">Your password is required.</span>
+                <span ng-show="(userInfoFrom.password.$invalid ||
+                  userInfoFrom.password.$error.required) &&
+                  userInfoFrom.password.$dirty"
+                  class="help-block">Password should be greater than 7 characters and must be alpha numeric with special character.
+                  Also minimum 1 character shoud be capital.</span>
             </div>
             <div class="form-group" ng-class="{ 'has-error' : userInfoFrom.passwordConfirm.$error.required && userInfoFrom.passwordConfirm.$dirty}">
                <label for="pwd">Confirm Password:</label>
-               <input type="password" name="passwordConfirm" class="form-control" ng-model="userInfo.passwordConfirm" ng-pattern="{{userInfo.password}}" required>
+               <input type="password" name="passwordConfirm" class="form-control" ng-model="userInfo.passwordConfirm" ng-pattern="{{userInfo.password}}" ng-minlength="10" required>
                <span ng-show="userInfoFrom.passwordConfirm.$error.required && userInfoFrom.passwordConfirm.$dirty" class="help-block">Please confirm your password.</span>
                 <span ng-show="userInfoFrom.passwordConfirm.$error.pattern" class="error">Password didn't match.</span>
             </div>
