@@ -42,6 +42,15 @@
                     }
                 }
             })
+            .state('WorldInsight.forgotPassword', {
+                url: 'forgetPassword/:token',
+                views: {
+                    'content@': {
+                        templateUrl : 'templates/home.html',
+                        controller : 'forgotPasswordController'
+                    }
+                }
+            })
             .state('WorldInsight.aboutus', {
                 url: 'aboutus',
                 views: {

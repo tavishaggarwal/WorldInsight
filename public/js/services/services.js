@@ -70,7 +70,8 @@
                 $resource('/users/register').save(registerData)
                         .$promise.then(
                         function (response) {
-                            login.login({username: registerData.username, password: registerData.password});
+                            alert(response.status);
+                            $('#signUpForm').addClass('hidden');
                         },
                         function (response) {
                             context =
@@ -86,6 +87,31 @@
                     );
             };
             
+            login.forgotPassword = function(forgotUsername) {
+                $resource('/users/forgetPassword').save(forgotUsername)
+                    .$promise.then(
+                        function (response) {
+                            $("#passwordResetRequest").modal('hide');
+                            alert(response.status);
+                        },
+                        function (response) {
+                            $("#passwordResetRequest").modal('hide');
+                            context =
+                                {
+                                    errormessage: 'Fail to ResetPassword. Please try again after some time',
+                                    responseMessage: response.data.message,
+                                    responseData: response.data.name
+                                };
+                            rendered = WorldInsight.templates.failure(context);
+                            ngDialog.openConfirm({ template: rendered, plain: 'true'});
+                        }
+                    );
+            };
+
+            login.resetPassword = function() {
+                return $resource('/users/forgetPassword/:token',{id:'@token'},{'update': { method:'PUT' }})
+            };
+
             login.logout = function () {
                 $resource('/users/logout/')
                     .get(function (response) {});

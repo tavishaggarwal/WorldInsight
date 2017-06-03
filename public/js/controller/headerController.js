@@ -21,12 +21,20 @@
         if(loginFactory.isAuthenticated()) {
             $scope.loggedIn = true;
             $scope.username = loginFactory.getDisplayname();
-        }
+        };
         
         $scope.logoutUser = function () {
             loginFactory.logout();
             $window.location.href = '/';
-        }
+        };
+
+        $scope.forgotPass = function () {
+           $("#passwordResetRequest").modal();
+        };
+
+        $scope.usernameVerify = function () {
+                loginFactory.forgotPassword($scope.forgotUsername);
+        };
     };
     
     angular.module('WorldInsight').controller('headerController', headerController);

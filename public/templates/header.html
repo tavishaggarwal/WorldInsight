@@ -1,4 +1,4 @@
-      <div id="top" class="login-header">
+      <div id="top" class="login-header" >
          <div class="container" ng-controller="loginController">
             <div class="row">
                <div class="col-md-7">
@@ -38,7 +38,7 @@
                                  class="error">Enter a valid email address.</div>
                            </td>
                            <td>
-                              <a href="#" id="forgot-pass">Forgotten account?</a>
+                              <a href="#" ng-click="forgotPass()" id="forgot-pass">Forgotten account?</a>
                               <div ng-cloak ng-show="IndexloginInfoForm.password.$error.required && IndexloginInfoForm.password.$dirty" class="error">Your password is required.</div>
                            </td>
                         </tr>
@@ -77,3 +77,26 @@
             </li>
          </ul>
       </nav>
+
+        <!-- Modal -->
+  <div class="modal fade" id="passwordResetRequest" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-lock"></span> Forgot Password</h4>
+        </div>
+        <div class="modal-body" >
+          <form name="passwordResetRequestForm" ng-submit="usernameVerify()" id="forgotPasswordForm" novalidate>
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+              <input type="text" class="form-control" id="usrname" ng-model="forgotUsername.username" placeholder="Enter email">
+            </div>
+              <button type="submit" class="btn btn-success btn-block">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div> 
