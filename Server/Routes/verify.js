@@ -18,9 +18,7 @@ exports.verifyOrdinaryUser = function (req, res, next) {
         // verifies secret and checks exp
         jwt.verify(token, config.secretKey || process.env.SECRET_KEY, function (err, decoded) {
             if (err) {
-                error = new Error('You are not authenticated!');
-                error.status = 401;
-                return next(error);
+               return res.status(401).json({message: 'You are not Authenticated to perform this action'});
             } else {
                 // if everything is good, save to request for use in other routes
                 req.decoded = decoded;
@@ -28,11 +26,7 @@ exports.verifyOrdinaryUser = function (req, res, next) {
             }
         });
     } else {
-        // if there is no token
-        // return an error
-        error = new Error('No token provided!');
-        error.status = 403;
-        return next(error);
+       return res.status(403).json({message: 'No token provided'});
     }
 };
 
@@ -56,7 +50,7 @@ exports.verifyAdmin = function (req, res, next) {
 exports.verifyUser = function (req, res, next) {
     'use strict';
     var err,
-        id = req.params.id ;
+        id = req.params.id;
     if (req.decoded) {
         Posts.findById(id, function (err, post) {
             
@@ -64,19 +58,13 @@ exports.verifyUser = function (req, res, next) {
                 if (post.postedBy === req.decoded.username) {
                     return next();
                 } else {
-                    err = new Error('You cannot edit this Post');
-                    err.status = 401;
-                    return next(err);
+                   return res.status(401).json({message: 'You cannot edit this post'});
                 }
             } else {
-                err = new Error('The post you are looking for is either deleted or doesn\'t exist');
-                    err.status = 401;
-                    return next(err);
+               return res.status(401).json({message: 'The post you are looking for is either deleted or doesn\'t exist'});
             }
         });
     } else {
-        err = new Error('You are not authenticated!');
-        err.status = 401;
-        return next(err);
+       return res.status(401).json({message: 'You are not Authenticated to perform this action'});
     }
 };

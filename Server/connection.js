@@ -30,7 +30,7 @@ if (mongodb_services) {
 // Function to connect to mongoDB
 var connectDatabase = function () {
     'use strict';
-    mongoose.connect(mongo.url,mongo.options);
+    mongoose.connect(mongo.url, mongo.options);
     var db = mongoose.connection;
     
     // If the connection throws an error

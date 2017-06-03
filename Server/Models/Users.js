@@ -24,7 +24,7 @@ var User = new Schema({
     registered: {
         type: Boolean,
         default: false
-    }, 
+    },
     resetPasswordToken: String,
     resetPasswordExpires: Date
 });

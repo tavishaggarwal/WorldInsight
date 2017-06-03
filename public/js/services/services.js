@@ -47,17 +47,16 @@
                 $resource('/users/login/').save(loginData)
                     .$promise.then(
                         function (response) {
-                            storeUserCredentials({username: response.username, displayname:response.displayname, token: response.token});
-                                             $('#signUpForm').addClass('hidden');
-                                             $window.location.href = '/posts';
-                                            },
+                            storeUserCredentials({username: response.username, displayname: response.displayname, token: response.token});
+                            $('#signUpForm').addClass('hidden');
+                            $window.location.href = '/posts';
+                        },
                         function (response) {
                             isAuthenticated = false;
                             context =
                                 {
                                     errormessage: 'Login Unsuccessful',
-                                    responseMessage: response.data.err.message,
-                                    responseData: response.data.err.name
+                                    responseMessage: response.data.message
                                 };
                             rendered = WorldInsight.templates.failure(context);
                             ngDialog.openConfirm({ template: rendered, plain: 'true'});
@@ -77,8 +76,7 @@
                             context =
                                 {
                                     errormessage: 'Fail to Register. Please try again after some time',
-                                    responseMessage: response.data.err.message,
-                                    responseData: response.data.err.name
+                                    responseMessage: response.data.message
                                 };
                             rendered = WorldInsight.templates.failure(context);
                             ngDialog.openConfirm({ template: rendered, plain: 'true'});
@@ -87,7 +85,7 @@
                     );
             };
             
-            login.forgotPassword = function(forgotUsername) {
+            login.forgotPassword = function (forgotUsername) {
                 $resource('/users/forgetPassword').save(forgotUsername)
                     .$promise.then(
                         function (response) {
@@ -108,8 +106,8 @@
                     );
             };
 
-            login.resetPassword = function() {
-                return $resource('/users/forgetPassword/:token',{id:'@token'},{'update': { method:'PUT' }})
+            login.resetPassword = function () {
+                return $resource('/users/forgetPassword/:token', {id: '@token'}, {'update': { method: 'PUT' }});
             };
 
             login.logout = function () {
@@ -143,7 +141,7 @@
             };
             
             posts.getPostsByID = function () {
-                return $resource('/post/:id', {id:'@id'});
+                return $resource('/post/:id', {id: '@id'});
             };
                 
             posts.addPosts = function () {
@@ -151,11 +149,11 @@
             };
                 
             posts.editPosts = function () {
-                return $resource('/post/edit/:id', {id:'@id'},{'update': { method:'PUT' }});
+                return $resource('/post/edit/:id', {id: '@id'}, {'update': { method: 'PUT' }});
             };
 
             posts.deletePosts = function () {
-                return $resource('/post/delete/:id', {id:'@id'},{'delete': { method:'DELETE' }});
+                return $resource('/post/delete/:id', {id: '@id'}, {'delete': { method: 'DELETE' }});
             };
             
             return posts;

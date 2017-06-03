@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     
-    var headerController = function ($scope,$window, loginFactory) {
+    var headerController = function ($scope, $window, loginFactory) {
         
         // Closes the sidebar menu
         $("#menu-close").click(function (e) {
@@ -18,10 +18,10 @@
         $scope.loggedIn = false;
         $scope.username = '';
     
-        if(loginFactory.isAuthenticated()) {
+        if (loginFactory.isAuthenticated()) {
             $scope.loggedIn = true;
             $scope.username = loginFactory.getDisplayname();
-        };
+        }
         
         $scope.logoutUser = function () {
             loginFactory.logout();
@@ -29,15 +29,15 @@
         };
 
         $scope.forgotPass = function () {
-           $("#passwordResetRequest").modal();
+            $("#passwordResetRequest").modal();
         };
 
         $scope.usernameVerify = function () {
-                loginFactory.forgotPassword($scope.forgotUsername);
+            loginFactory.forgotPassword($scope.forgotUsername);
         };
     };
     
     angular.module('WorldInsight').controller('headerController', headerController);
     
-    headerController.$inject = ['$scope','$window', 'loginFactory'];
+    headerController.$inject = ['$scope', '$window', 'loginFactory'];
 }());

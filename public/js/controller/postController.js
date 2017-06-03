@@ -6,6 +6,7 @@
         
         $scope.loggedIn = false;
         $scope.newPost = {};
+        $scope.forms = {};
 
         var init = (function () {
             // Scroll to top of page
@@ -15,8 +16,8 @@
         var editPost = function () {
             $(".editbox").click(function () {
                 $('.editbox').animate({
-        scrollTop: $(".postInput").offset().top},
-        'slow');
+                    scrollTop: $(".postInput").offset().top
+                }, 'slow');
                 $('#addPost').prop('disabled', true);
                 $window.scrollTo(0, 0);
                 var postID = $(this).data('id');
@@ -28,14 +29,10 @@
                 }, function (response) {
                     context = {
                         errormessage: 'Fail to Edit post. ',
-                        responseMessage: 'Please try again after some time',
-                        responseData: 'Error Code: ' + response.status
+                        responseMessage: response.data.message
                     };
                     rendered = WorldInsight.templates.failure(context);
-                    ngDialog.openConfirm({
-                        template: rendered,
-                        plain: 'true'
-                    });
+                    ngDialog.openConfirm({template: rendered, plain: 'true'});
                 });
             });
         };
@@ -45,23 +42,19 @@
             $('.deletePost').click(function () {
                 deletePostID = $(this).data('id');
 
-            postFactory.deletePosts().delete({
-                'id': deletePostID
-            }, {'_id': deletePostID}).$promise.then(function (response) {
-                alert(response.message);
-                $scope.getPosts();
-            }, function (response) {
-                context = {
-                    errormessage: 'Fail to Delete post. ',
-                    responseMessage: response.data.message,
-                    responseData: 'Error Code: ' + response.status
-                };
-                rendered = WorldInsight.templates.failure(context);
-                ngDialog.openConfirm({
-                    template: rendered,
-                    plain: 'true'
+                postFactory.deletePosts().delete({
+                    'id': deletePostID
+                }, {'_id': deletePostID}).$promise.then(function (response) {
+                    alert(response.message);
+                    $scope.getPosts();
+                }, function (response) {
+                    context = {
+                        errormessage: 'Fail to Delete post.',
+                        responseMessage: response.data.message
+                    };
+                    rendered = WorldInsight.templates.failure(context);
+                    ngDialog.openConfirm({template: rendered, plain: 'true'});
                 });
-            });
             });
         };
 
@@ -112,48 +105,46 @@
         }
 
         $scope.addPost = function () {
-            $scope.newPost.imageLocation = $('#postImage').val().replace(/C:\\fakepath\\/i, '');
-            $scope.newPost.postedBy = loginFactory.getUsername();
-            postFactory.addPosts().save($scope.newPost).$promise.then(function (response) {
-                $scope.newPost = {};
-                alert('Post Added Successfully');
-                $scope.getPosts();
-            }, function (response) {
-                context = {
-                    errormessage: 'Fail to Add post. ',
-                    responseMessage: 'Please try again after some time',
-                    responseData: 'Error Code: ' + response.status
-                };
-                rendered = WorldInsight.templates.failure(context);
-                ngDialog.openConfirm({
-                    template: rendered,
-                    plain: 'true'
+            if ($scope.forms.postInputForm.$valid) {
+                $scope.newPost.imageLocation = $('#postImage').val().replace(/C:\\fakepath\\/i, '');
+                $scope.newPost.postedBy = loginFactory.getUsername();
+                postFactory.addPosts().save($scope.newPost).$promise.then(function (response) {
+                    $scope.newPost = {};
+                    alert('Post Added Successfully');
+                    $scope.forms.postInputForm.$setPristine();
+                    $scope.getPosts();
+                }, function (response) {
+                    context = {
+                        errormessage: 'Fail to Add post. ',
+                        responseMessage: response.data.message
+                    };
+                    rendered = WorldInsight.templates.failure(context);
+                    ngDialog.openConfirm({template: rendered, plain: 'true'});
                 });
-            });
+            }
         };
 
         $scope.updatePost = function () {
-            var id = $scope.newPost._id;
-            $scope.newPost.postedBy = loginFactory.getUsername();
-            postFactory.editPosts().update({
-                'id': id
-            }, $scope.newPost).$promise.then(function (response) {
-                $scope.newPost = response;
-                $('#editPost').prop('disabled', true);
-                $('#addPost').prop('disabled', false);
-                $scope.getPosts();
-            }, function (response) {
-                context = {
-                    errormessage: 'Fail to Edit post. ',
-                    responseMessage: response.data.message,
-                    responseData: 'Error Code: ' + response.status
-                };
-                rendered = WorldInsight.templates.failure(context);
-                ngDialog.openConfirm({
-                    template: rendered,
-                    plain: 'true'
+            if ($scope.forms.postInputForm.$valid) {
+                var id = $scope.newPost._id;
+                $scope.newPost.postedBy = loginFactory.getUsername();
+                postFactory.editPosts().update({
+                    'id': id
+                }, $scope.newPost).$promise.then(function (response) {
+                    $scope.newPost = response;
+                    $('#editPost').prop('disabled', true);
+                    $('#addPost').prop('disabled', false);
+                    $scope.forms.postInputForm.$setPristine();
+                    $scope.getPosts();
+                }, function (response) {
+                    context = {
+                        errormessage: 'Fail to Edit post.',
+                        responseMessage: response.data.message
+                    };
+                    rendered = WorldInsight.templates.failure(context);
+                    ngDialog.openConfirm({template: rendered, plain: 'true'});
                 });
-            });
+            }
         };
     };
 

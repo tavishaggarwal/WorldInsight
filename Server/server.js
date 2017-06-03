@@ -33,13 +33,13 @@ passport.deserializeUser(User.deserializeUser());
 app.use('/users', users);
 app.use('/post', posts);
 
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.json({
       message: err.message,
       error: err
     });
-  });
+});
 
 app.get('*', function (req, res, next) {
     'use strict';

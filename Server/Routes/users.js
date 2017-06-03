@@ -12,7 +12,7 @@ router.get('/', verify.verifyOrdinaryUser, verify.verifyAdmin, function (req, re
     'use strict';
     User.find({}, function (err, users) {
         if (err) {
-            throw err;
+           return res.status(500).json({message: 'You are not authenticated to perform this operation'});
         }
         res.json(users);
     });
@@ -23,14 +23,14 @@ router.post('/register', function (req, res) {
     'use strict';
     
     User.register(new User({ username : req.body.username, firstname: req.body.firstname, lastname: req.body.lastname,
-    randomString:randomstring.generate(),userExpires:Date.now(), registered: false }), req.body.password, function (err, user) {
-            if (err) {
-                return res.status(500).json({err: err});
-            }
-            passport.authenticate('local')(req, res, function () {
-                const token = user.randomString;
-                const URL = `https://${req.get('host')}/users/auth/${token}`;
-                Mailsender.mailOptions = {
+        randomString: randomstring.generate(), userExpires: Date.now(), registered: false }), req.body.password, function (err, user) {
+        if (err) {
+             return res.status(500).json({message: "Failed to register. Please try again after some time."});
+        }
+        passport.authenticate('local')(req, res, function () {
+            const token = user.randomString;
+            const URL = `https://${req.get('host')}/users/auth/${token}`;
+            Mailsender.mailOptions = {
                     from: '"World Insights" <Tavish@WorldInsight.com>',
                     to: req.body.username, // list of receivers
                     subject: 'Thanks for Signing Up to World Insight', // Subject line
@@ -46,7 +46,7 @@ router.post('/register', function (req, res) {
                 if (true == config.mailSend) {
                 Mailsender.sendMail(Mailsender.mailOptions);
                 }
-                 res.status(200).json({status: 'Kindly verify email to login'});
+                 return res.status(200).json({status: 'Kindly verify email to login'});
             });
         });
 });
@@ -67,19 +67,19 @@ router.get('/auth/:authtoken', function (req, res, next) {
                     
                         user.save(function (err) {
                         if(err) {
-                            console.error('ERROR!');
+                           return res.status(500).json({message: 'Error occured while Authenticating user'});
                         }
                     });
                     } else {
-                        res.status(200).json({message: 'Verification link expired'});
+                        res.status(500).json({message: 'Verification link expired'});
                     }
             } else {
-                 res.status(200).json({message: 'Either Verification token has expired or token is not valid'});
+                return res.status(500).json({message: 'Either Verification token has expired or token is not valid'});
              }
             next();
     });
     } else {
-         res.status(200).json({message: 'Please click the correct authentication URL'});
+         return res.status(200).json({message: 'Authenticating URL is invalid'});
     }
 });
 
@@ -88,23 +88,19 @@ router.post('/login', function (req, res, next) {
     
     passport.authenticate('local', function (err, user, info) {
         if (err) {
-            return next(err);
+           return res.status(500).json({message: 'Error occured while logging you in to World Insight'});
         }
         if (!user) {
-            return res.status(401).json({
-                err: info
-            });
+             return res.status(401).json({message: 'User doesn\'t exists or username and password is not correct. Kindly Sign up to contribte to the community.' });
         }
         req.logIn(user, function (err) {
             if (err || false == user.registered) {
-                return res.status(500).json({
-                    err: 'Could not log in user'
-                });
+                return res.status(500).json({message: 'Please verify mail, before logging in to World Insight'});
             }
             
             var token = verify.getToken({"username": user.username, "_id": user._id, "admin": user.admin});
 
-            res.status(200).json({
+            return res.status(200).json({
                 status: 'Login successful!',
                 success: true,
                 token: token,
@@ -119,7 +115,7 @@ router.post('/forgetPassword', function (req, res) {
     'use strict';
     User.findOne({username: req.body.username},function (err, user){
         if(err) {
-            console.error('ERROR!');
+           return res.status(500).json({message: 'Error occured while looking up for the user. Please try again after some time'});
         }
 
         if(user) {
@@ -127,7 +123,7 @@ router.post('/forgetPassword', function (req, res) {
             user.resetPasswordExpires = Date.now();
             user.save(function (err) {
                 if(err) {
-                    console.log(err);
+                   return res.status(500).json({message: 'Error occured while updating password. Please try again after some time'});
                 }
                 const URL = `https://${req.get('host')}/forgetPassword/${token}`;
                     Mailsender.mailOptions = {
@@ -137,6 +133,7 @@ router.post('/forgetPassword', function (req, res) {
                         text: '', // plain text body
                         html: `Hello ${req.body.firstname || 'Friend'},<br /> <p>
                         Click the following link to reset your password:</p><p>${URL}</p>
+                        <p>The above link will be valid for 15 minutes.</p>
                         If you have any questions or comments about the content you’re receiving please 
                         email back and we will respond to your inquiry promptly.</p><br />Sincerely,<br />
                         Tavish Aggarwal<br /> Chief Executive Officer- World Insight`
@@ -144,10 +141,10 @@ router.post('/forgetPassword', function (req, res) {
                     if (true == config.mailSend) {
                         Mailsender.sendMail(Mailsender.mailOptions);
                     }
-                     res.status(200).json({status: 'Kindly check your mailbox to reset your password'});
+                    return res.status(200).json({status: 'Kindly check your mailbox to reset your password'});
             });
             } else {
-                res.status(400).json({message: 'User doesnt exist. Please Register yourself on World Insight'});
+               return res.status(400).json({message: 'User doesnt exist. Please Register yourself on World Insight'});
             
             }
     });
@@ -163,27 +160,27 @@ router.put('/forgetPassword/:passwordresetToken', function (req, res) {
                 expireDate.setMinutes(expireDate.getMinutes() + config.tokenExpire);
                     if(Date.now() < expireDate) {
                         user.setPassword(req.body.password, function() {
-                            // user.resetPasswordToken = undefined;
-                           // user.resetPasswordExpires = undefined;
+                            user.resetPasswordToken = undefined;
+                            user.resetPasswordExpires = undefined;
                             user.save();
-                            res.status(200).json({message: 'password reset successful'});
+                           return res.status(200).json({message: 'Password reset successful'});
                         });
                     } else {
-                        res.status(200).json({message: 'Password Reset link expired'});
+                       return res.status(200).json({message: 'Password Reset link expired'});
                     }
             } else {
-                res.status(200).json({message: 'Either Verification token has expired or token is not valid'});
+               return res.status(200).json({message: 'Either Verification token has expired or token is not valid'});
              }
     });
     } else {
-         res.status(200).json({message: 'Please click the correct authentication URL'});
+         return res.status(200).json({message: 'Please click the correct authentication URL'});
     }
 });
 
 router.get('/logout', function (req, res) {
     'use strict';
     req.logout();
-    res.status(200).json({status: 'Successfully Logged Out'});
+   return res.status(200).json({status: 'Successfully Logged Out'});
 });
 
 module.exports = router;

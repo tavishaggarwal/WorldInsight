@@ -1,7 +1,7 @@
 (function () {
     'use strict';
       
-    var forgotPasswordController =  function ($scope,$location, loginFactory) {
+    var forgotPasswordController =  function ($scope, $location, loginFactory) {
         
         $scope.resetPassword = function () {
             const resetToken = $location.$$url.split('/forgetPassword/');
@@ -14,8 +14,7 @@
                 $("#passwordReset").modal('hide');
                 context = {
                     errormessage: 'Fail to Update Password. ',
-                    responseMessage: response.data.message,
-                    responseData: 'Error Code: ' + response.status
+                    responseMessage: response.data.message
                 };
             });
         };
