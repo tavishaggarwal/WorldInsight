@@ -1,5 +1,6 @@
 var mongo = {};
 var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 var cfenv = require('cfenv');
 var appenv = cfenv.getAppEnv();
 var services = appenv.services;

@@ -16,7 +16,17 @@ var User = new Schema({
     lastname: {
         type: String,
         default: ''
-    }
+    },
+    randomString: {
+        type: String
+    },
+    userExpires: Date,
+    registered: {
+        type: Boolean,
+        default: false
+    }, 
+    resetPasswordToken: String,
+    resetPasswordExpires: Date
 });
 
 User.plugin(passportLocalMongoose);
