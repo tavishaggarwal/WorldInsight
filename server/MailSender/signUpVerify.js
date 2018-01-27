@@ -4,8 +4,8 @@ var Config = require('./../config');
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: Config.user || process.env.USER,
-        pass: Config.pass || process.env.PASS
+        user: Config.user || process.env.user,
+        pass: Config.pass || process.env.pass
     }
 });
 

@@ -12,8 +12,8 @@ module.exports = function(passport) {
     passport.deserializeUser(User.deserializeUser());
 
     passport.use(new FacebookStrategy({  
-        clientID: config.FACEBOOK_APP_ID,
-        clientSecret: config.FACEBOOK_APP_SECRET,
+        clientID: config.FACEBOOK_APP_ID || process.env.FACEBOOK_APP_ID,
+        clientSecret: config.FACEBOOK_APP_SECRET || process.env.FACEBOOK_APP_SECRET,
         callbackURL: config.FACEBOOK_CALLBACK_URL,
         profileFields: ['email', 'first_name', 'last_name'],
     },
