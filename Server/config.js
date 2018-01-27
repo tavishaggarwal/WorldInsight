@@ -1,5 +1,8 @@
 module.exports = {
-    'secretKey': '12345-67890-09876-54321',
-    'user': '',
-    'pass': ''
-}
+    'secretKey': '',
+    'user': 'ussysmg.worldinsight@gmail.com',
+    'pass': '',
+    'Domain': 'https://worldinsight.mybluemix.net',
+    'mailSend': true,
+    'tokenExpire': 15 // Time in minutes
+};

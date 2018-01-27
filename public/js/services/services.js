@@ -47,19 +47,18 @@
                 $resource('/users/login/').save(loginData)
                     .$promise.then(
                         function (response) {
-                            storeUserCredentials({username: response.username, displayname:response.displayname, token: response.token});
-                                             $('#signUpForm').addClass('hidden');
-                                             $window.location.href = '/posts';
-                                            },
+                            storeUserCredentials({username: response.username, displayname: response.displayname, token: response.token});
+                            $('#signUpForm').addClass('hidden');
+                            $window.location.href = '/posts';
+                        },
                         function (response) {
                             isAuthenticated = false;
                             context =
                                 {
-                                    errormessage: 'Login Unsuccessful',
-                                    responseMessage: response.data.err.message,
-                                    responseData: response.data.err.name
+                                    message: 'Login Unsuccessful',
+                                    responseMessage: response.data.message
                                 };
-                            rendered = WorldInsight.templates.failure(context);
+                            rendered = WorldInsight.templates.responseDialog(context);
                             ngDialog.openConfirm({ template: rendered, plain: 'true'});
                             $('#signIn, #signInForm').addClass('hidden');
                         }
@@ -70,46 +69,57 @@
                 $resource('/users/register').save(registerData)
                         .$promise.then(
                         function (response) {
-                            alert(response.status);
+                            context =
+                        {
+                            message: 'You are registered successfully to World Insight',
+                            responseMessage: response.status
+                        };
+                    rendered = WorldInsight.templates.responseDialog(context);
+                    ngDialog.openConfirm({ template: rendered, plain: 'true'});
+
                             $('#signUpForm').addClass('hidden');
                         },
                         function (response) {
                             context =
                                 {
-                                    errormessage: 'Fail to Register. Please try again after some time',
-                                    responseMessage: response.data.err.message,
-                                    responseData: response.data.err.name
+                                    message: 'Fail to Register. Please try again after some time',
+                                    responseMessage: response.data.message
                                 };
-                            rendered = WorldInsight.templates.failure(context);
+                            rendered = WorldInsight.templates.responseDialog(context);
                             ngDialog.openConfirm({ template: rendered, plain: 'true'});
                             $('#signUpForm').addClass('hidden');
                         }
                     );
             };
             
-            login.forgotPassword = function(forgotUsername) {
+            login.forgotPassword = function (forgotUsername) {
                 $resource('/users/forgetPassword').save(forgotUsername)
                     .$promise.then(
                         function (response) {
                             $("#passwordResetRequest").modal('hide');
-                            alert(response.status);
+                            context =
+                                {
+                                    message: 'Mail sent',
+                                    responseMessage: response.message
+                                };
+                            rendered = WorldInsight.templates.responseDialog(context);
+                            ngDialog.openConfirm({ template: rendered, plain: 'true'});
                         },
                         function (response) {
                             $("#passwordResetRequest").modal('hide');
                             context =
                                 {
-                                    errormessage: 'Fail to ResetPassword. Please try again after some time',
-                                    responseMessage: response.data.message,
-                                    responseData: response.data.name
+                                    message: 'Fail to Reset Password.',
+                                    responseMessage: response.data.message
                                 };
-                            rendered = WorldInsight.templates.failure(context);
+                            rendered = WorldInsight.templates.responseDialog(context);
                             ngDialog.openConfirm({ template: rendered, plain: 'true'});
                         }
                     );
             };
 
-            login.resetPassword = function() {
-                return $resource('/users/forgetPassword/:token',{id:'@token'},{'update': { method:'PUT' }})
+            login.resetPassword = function () {
+                return $resource('/users/forgetPassword/:token', {id: '@token'}, {'update': { method: 'PUT' }});
             };
 
             login.logout = function () {
@@ -132,6 +142,15 @@
                 return username;
             };
             
+            login.facebookSignup = function () {
+                return $resource('/users/auth/facebook', {}, {
+                    get: {
+                        method: 'GET',
+                        data: false,
+                        headers: { 'Access-Control-Allow-Origin': '*'} 
+                    }
+                })
+            };
             return login;
         }])
     
@@ -143,7 +162,7 @@
             };
             
             posts.getPostsByID = function () {
-                return $resource('/post/:id', {id:'@id'});
+                return $resource('/post/:id', {id: '@id'});
             };
                 
             posts.addPosts = function () {
@@ -151,11 +170,11 @@
             };
                 
             posts.editPosts = function () {
-                return $resource('/post/edit/:id', {id:'@id'},{'update': { method:'PUT' }});
+                return $resource('/post/edit/:id', {id: '@id'}, {'update': { method: 'PUT' }});
             };
 
             posts.deletePosts = function () {
-                return $resource('/post/delete/:id', {id:'@id'},{'delete': { method:'DELETE' }});
+                return $resource('/post/delete/:id', {id: '@id'}, {'delete': { method: 'DELETE' }});
             };
             
             return posts;

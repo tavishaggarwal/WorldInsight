@@ -137,16 +137,24 @@
         </div>
         <div class="modal-body" >
           <form name="passwordResetRequestForm" ng-submit="resetPassword()" id="PasswordResetForm" novalidate>
-              <div class="form-group">
+              <div class="form-group" ng-class="{ 'has-error' : passwordResetRequestForm.password.$error.required && passwordResetRequestForm.password.$dirty }">
                 <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-                <input type="password" class="form-control" id="psw" ng-model = "updatePassword.password" placeholder="Enter password">
+                <input type="password" name="password" class="form-control" ng-model = "updatePassword.password" placeholder="Enter password" complex-password required>
+                <span ng-show="passwordResetRequestForm.password.$error.required && passwordResetRequestForm.password.$dirty" class="help-block">Your password is required.</span>
+                <span ng-show="(passwordResetRequestForm.password.$invalid ||
+                  passwordResetRequestForm.password.$error.required) &&
+                  passwordResetRequestForm.password.$dirty"
+                  class="help-block">Password should be greater than 7 characters and must be alpha numeric with special character.
+                  Also minimum 1 character shoud be capital.</span>
               </div>
 
-              <div class="form-group">
+              <div class="form-group" ng-class="{ 'has-error' : passwordResetRequestForm.passwordConfirm.$error.required && passwordResetRequestForm.passwordConfirm.$dirty }">
                 <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Confirm Password</label>
-                <input type="password" class="form-control" id="psw" placeholder="Enter password">
+                <input type="password" class="form-control" name="passwordConfirm" ng-model="updatePassword.passwordConfirm" placeholder="Retype password to confirm" ng-pattern="{{updatePassword.password}}" complex-password required>
+                <span ng-show="passwordResetRequestForm.passwordConfirm.$error.required && passwordResetRequestForm.passwordConfirm.$dirty" class="help-block">Please confirm your password.</span>
+                <span ng-show="passwordResetRequestForm.passwordConfirm.$error.pattern" class="error">Password didn't match.</span>
               </div>
-              <button type="submit" class="btn btn-success btn-block">Submit</button>
+              <button type="submit" class="btn btn-success btn-block" ng-disabled="passwordResetRequestForm.$invalid">Submit</button>
           </form>
         </div>
       </div>

@@ -15,6 +15,15 @@
                     context = {post: response};
                     rendered = WorldInsight.templates.post(context);
                     $('#post').html(rendered);
+                }, 
+                function (response) {
+                    context =
+                        {
+                            message: 'Unable to display Posts',
+                            responseMessage: response.data.message
+                        };
+                    rendered = WorldInsight.templates.responseDialog(context);
+                    ngDialog.openConfirm({ template: rendered, plain: 'true'});
                 }
             );
     };

@@ -1,6 +1,5 @@
-'use strict';
 var nodemailer = require('nodemailer');
-var Config = require('./../config')
+var Config = require('./../config');
 // create reusable transporter object using the default SMTP transport
 let transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -9,7 +8,6 @@ let transporter = nodemailer.createTransport({
         pass: Config.pass || process.env.PASS
     }
 });
-
 
  exports.sendMail = function (mailOptions) {
 // send Mail with defined transport object

@@ -29,6 +29,10 @@
         $scope.logout = function () {
             loginFactory.logout();
         };
+
+        $scope.facebookSignup = function() {
+            loginFactory.facebookSignup();
+        }
     };
     
     angular.module('WorldInsight').controller('loginController', loginController);

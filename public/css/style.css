@@ -20,6 +20,10 @@
   text-align: left;
   vertical-align: middle;
 }
+.ngdialog-message .ngdialog-close {
+  display: none;
+}
+
 .tooltip {
   position: fixed;
 }
