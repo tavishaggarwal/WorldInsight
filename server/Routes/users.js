@@ -107,7 +107,7 @@ router.get('/auth/:authtoken', function (req, res, next) {
         User.findOne({randomString:req.params.authtoken}, function (err, user) {
             if (user) {
                 let expireDate = new Date(user.userExpires);
-                expireDate.setMinutes(expireDate.getMinutes() + config.tokenExpire || process.env.tokenExpire);
+                expireDate.setMinutes(expireDate.getMinutes() + config.tokenExpire);
                     if(Date.now() < expireDate) {
                         user.registered = true;
                         user.randomString  = undefined;
@@ -205,7 +205,7 @@ router.put('/forgetPassword/:passwordresetToken', function (req, res) {
         User.findOne({resetPasswordToken:req.params.passwordresetToken}, function (err, user) {
             if (user) {
                 let expireDate = new Date(user.resetPasswordExpires);
-                expireDate.setMinutes(expireDate.getMinutes() + config.tokenExpire || proces.env.tokenExpire);
+                expireDate.setMinutes(expireDate.getMinutes() + config.tokenExpire);
                     if(Date.now() < expireDate) {
                         user.setPassword(req.body.password, function() {
                             user.resetPasswordToken = undefined;

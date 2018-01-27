@@ -5,7 +5,6 @@ var cfenv = require('cfenv');
 var appenv = cfenv.getAppEnv();
 var services = appenv.services;
 var mongodb_services = services["compose-for-mongodb"];
-var Config = require('./config');
 
 if (mongodb_services) {
     var credentials = mongodb_services[0].credentials;
@@ -23,7 +22,7 @@ if (mongodb_services) {
     };
 } else {
     mongo = {
-        "url" : Config.dataSource || process.env.dataSource,
+        "url" : "mongodb://localhost:27017/WorldInsight",
         "options": {}
     };
 }
