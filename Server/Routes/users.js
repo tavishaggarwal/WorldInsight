@@ -25,7 +25,7 @@ router.post('/register', function (req, res) {
     User.register(new User({ username : req.body.username, firstname: req.body.firstname, lastname: req.body.lastname,
         randomString: randomstring.generate(), userExpires: Date.now(), registered: false }), req.body.password, function (err, user) {
         if (err) {
-             return res.status(500).json({message: "Failed to register. Please try again after some time."});
+             return res.status(500).json({message: "User with email id is already registered. Kindly click on login to enter World Insight"});
         }
         passport.authenticate('local')(req, res, function () {
             const token = user.randomString;
@@ -50,6 +50,54 @@ router.post('/register', function (req, res) {
             });
         });
 });
+
+
+router.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
+ 
+router.get('/auth/facebook/callback', function(req,res,next) {
+    
+    passport.authenticate('facebook', function (err, user, info) {
+        if (err) {
+           return res.status(500).json({message: 'Error occured while logging you in to World Insight'});
+        }
+        if (!user) {
+             return res.status(401).json({message: 'User doesn\'t exists or username and password is not correct. Kindly Sign up to contribte to the community.' });
+        }
+        req.logIn(user, function (err) {
+            if (false == user.registered) {
+                const token = user.randomString;
+                const URL = `https://${req.get('host')}/users/auth/${token}`;
+                Mailsender.mailOptions = {
+                    from: '"World Insights" <Tavish@WorldInsight.com>',
+                    to: user.facebook.email, // list of receivers
+                    subject: 'Thanks for Signing Up to World Insight', // Subject line
+                    text: '', // plain text body
+                    html: `Hello ${user.facebook.name || 'Friend'},<br /> <p>Thank you for Signing Up to World 
+                    Insight. Hope you enjoy to be part of community and have a good time here.
+                    Click the following link to confirm your account:</p><p>${URL}</p>
+                    <p>The above link will be valid for 15 minutes. Please confirm your account before that.</p>
+                    If you have any questions or comments about the content you’re receiving please 
+                    email back and we will respond to your inquiry promptly.</p><br />Sincerely,<br />
+                    Tavish Aggarwal<br /> Chief Executive Officer- World Insight`
+                };
+                if (true == config.mailSend) {
+                Mailsender.sendMail(Mailsender.mailOptions);
+                }
+                return res.status(500).json({message: 'Please verify mail, before logging in to World Insight'});
+            }
+        
+            var token = verify.getToken({"username": user.facebook.username, "_id": user.facebook.id, "admin": user.admin});
+
+            return res.status(200).json({
+                status: 'Login successful!',
+                success: true,
+                token: token,
+                displayname: user.facebook.name,
+                username: user.facebook.username
+            });
+        });
+    })(req, res, next);
+  });
 
 router.get('/auth/:authtoken', function (req, res, next) {
     'use strict';

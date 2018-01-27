@@ -19,10 +19,10 @@
                 function (response) {
                     context =
                         {
-                            errormessage: 'Unable to display Posts',
+                            message: 'Unable to display Posts',
                             responseMessage: response.data.message
                         };
-                    rendered = WorldInsight.templates.failure(context);
+                    rendered = WorldInsight.templates.responseDialog(context);
                     ngDialog.openConfirm({ template: rendered, plain: 'true'});
                 }
             );

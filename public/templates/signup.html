@@ -25,6 +25,11 @@
             <button type="submit" class="btn btn-default" ng-disabled="loginInfoForm.$invalid">Login</button>
             <img src="../images/loading.gif" alt="Loading.." class="loading-small hidden" id="signInForm"/>
          </form>
+
+         <div class="facebookLogin">
+               <div><a href="/users/auth/facebook" target="_blank">SignUp with facebook</a></div>
+               <div ng-click="facebookSignup()">Login with facebook</div>
+         </div>
       </div>
        
        

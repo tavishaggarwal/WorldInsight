@@ -55,10 +55,10 @@
                             isAuthenticated = false;
                             context =
                                 {
-                                    errormessage: 'Login Unsuccessful',
+                                    message: 'Login Unsuccessful',
                                     responseMessage: response.data.message
                                 };
-                            rendered = WorldInsight.templates.failure(context);
+                            rendered = WorldInsight.templates.responseDialog(context);
                             ngDialog.openConfirm({ template: rendered, plain: 'true'});
                             $('#signIn, #signInForm').addClass('hidden');
                         }
@@ -69,16 +69,23 @@
                 $resource('/users/register').save(registerData)
                         .$promise.then(
                         function (response) {
-                            alert(response.status);
+                            context =
+                        {
+                            message: 'You are registered successfully to World Insight',
+                            responseMessage: response.status
+                        };
+                    rendered = WorldInsight.templates.responseDialog(context);
+                    ngDialog.openConfirm({ template: rendered, plain: 'true'});
+
                             $('#signUpForm').addClass('hidden');
                         },
                         function (response) {
                             context =
                                 {
-                                    errormessage: 'Fail to Register. Please try again after some time',
+                                    message: 'Fail to Register. Please try again after some time',
                                     responseMessage: response.data.message
                                 };
-                            rendered = WorldInsight.templates.failure(context);
+                            rendered = WorldInsight.templates.responseDialog(context);
                             ngDialog.openConfirm({ template: rendered, plain: 'true'});
                             $('#signUpForm').addClass('hidden');
                         }
@@ -90,17 +97,22 @@
                     .$promise.then(
                         function (response) {
                             $("#passwordResetRequest").modal('hide');
-                            alert(response.status);
+                            context =
+                                {
+                                    message: 'Mail sent',
+                                    responseMessage: response.message
+                                };
+                            rendered = WorldInsight.templates.responseDialog(context);
+                            ngDialog.openConfirm({ template: rendered, plain: 'true'});
                         },
                         function (response) {
                             $("#passwordResetRequest").modal('hide');
                             context =
                                 {
-                                    errormessage: 'Fail to ResetPassword. Please try again after some time',
-                                    responseMessage: response.data.message,
-                                    responseData: response.data.name
+                                    message: 'Fail to Reset Password.',
+                                    responseMessage: response.data.message
                                 };
-                            rendered = WorldInsight.templates.failure(context);
+                            rendered = WorldInsight.templates.responseDialog(context);
                             ngDialog.openConfirm({ template: rendered, plain: 'true'});
                         }
                     );
@@ -130,6 +142,15 @@
                 return username;
             };
             
+            login.facebookSignup = function () {
+                return $resource('/users/auth/facebook', {}, {
+                    get: {
+                        method: 'GET',
+                        data: false,
+                        headers: { 'Access-Control-Allow-Origin': '*'} 
+                    }
+                })
+            };
             return login;
         }])
     

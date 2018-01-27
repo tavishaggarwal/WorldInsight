@@ -10,23 +10,32 @@ var User = new Schema({
         default: false
     },
     firstname: {
-        type: String,
-        default: ''
-    },
-    lastname: {
-        type: String,
-        default: ''
-    },
-    randomString: {
         type: String
     },
-    userExpires: Date,
+    lastname: {
+        type: String
+    },
+    randomString: {
+        type: String,
+        default: null
+    },
+    userExpires: {
+        type: Date,
+        default: null
+    },
     registered: {
         type: Boolean,
         default: false
     },
     resetPasswordToken: String,
-    resetPasswordExpires: Date
+    resetPasswordExpires: Date,
+
+    facebook: {
+    id: String,
+    token: String,
+    email: String,
+    name: String,
+  }
 });
 
 User.plugin(passportLocalMongoose);

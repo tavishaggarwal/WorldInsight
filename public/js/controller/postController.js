@@ -28,10 +28,10 @@
                     $('#editPost').prop('disabled', false);
                 }, function (response) {
                     context = {
-                        errormessage: 'Fail to Edit post. ',
+                        message: 'Fail to Edit post. ',
                         responseMessage: response.data.message
                     };
-                    rendered = WorldInsight.templates.failure(context);
+                    rendered = WorldInsight.templates.responseDialog(context);
                     ngDialog.openConfirm({template: rendered, plain: 'true'});
                 });
             });
@@ -45,14 +45,20 @@
                 postFactory.deletePosts().delete({
                     'id': deletePostID
                 }, {'_id': deletePostID}).$promise.then(function (response) {
-                    alert(response.message);
+                    context =
+                        {
+                            message: 'Post deleted successfully',
+                            responseMessage: response.message
+                        };
+                    rendered = WorldInsight.templates.responseDialog(context);
+                    ngDialog.openConfirm({ template: rendered, plain: 'true'});
                     $scope.getPosts();
                 }, function (response) {
                     context = {
-                        errormessage: 'Fail to Delete post.',
+                        message: 'Fail to Delete post.',
                         responseMessage: response.data.message
                     };
-                    rendered = WorldInsight.templates.failure(context);
+                    rendered = WorldInsight.templates.responseDialog(context);
                     ngDialog.openConfirm({template: rendered, plain: 'true'});
                 });
             });
@@ -110,15 +116,22 @@
                 $scope.newPost.postedBy = loginFactory.getUsername();
                 postFactory.addPosts().save($scope.newPost).$promise.then(function (response) {
                     $scope.newPost = {};
-                    alert('Post Added Successfully');
+                    context =
+                        {
+                            message: 'Post Added Successfully',
+                            responseMessage: 'Congratz! Post is shared with community'
+                        };
+                    rendered = WorldInsight.templates.responseDialog(context);
+                    ngDialog.openConfirm({ template: rendered, plain: 'true'});
+
                     $scope.forms.postInputForm.$setPristine();
                     $scope.getPosts();
                 }, function (response) {
                     context = {
-                        errormessage: 'Fail to Add post. ',
+                        message: 'Fail to Add post. ',
                         responseMessage: response.data.message
                     };
-                    rendered = WorldInsight.templates.failure(context);
+                    rendered = WorldInsight.templates.responseDialog(context);
                     ngDialog.openConfirm({template: rendered, plain: 'true'});
                 });
             }
@@ -138,10 +151,10 @@
                     $scope.getPosts();
                 }, function (response) {
                     context = {
-                        errormessage: 'Fail to Edit post.',
+                        message: 'Fail to Edit post.',
                         responseMessage: response.data.message
                     };
-                    rendered = WorldInsight.templates.failure(context);
+                    rendered = WorldInsight.templates.responseDialog(context);
                     ngDialog.openConfirm({template: rendered, plain: 'true'});
                 });
             }
