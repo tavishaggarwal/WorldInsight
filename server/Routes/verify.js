@@ -5,7 +5,7 @@ var config = require('../config.js');
 
 exports.getToken = function (user) {
     'use strict';
-    return jwt.sign(user, config.secretKey || process.env.SECRET_KEY);
+    return jwt.sign(user, config.secretKey || process.env.secretKey);
 };
 
 exports.verifyOrdinaryUser = function (req, res, next) {
@@ -16,7 +16,7 @@ exports.verifyOrdinaryUser = function (req, res, next) {
     // decode token
     if (token) {
         // verifies secret and checks exp
-        jwt.verify(token, config.secretKey || process.env.SECRET_KEY, function (err, decoded) {
+        jwt.verify(token, config.secretKey || process.env.secretKey, function (err, decoded) {
             if (err) {
                return res.status(401).json({message: 'You are not Authenticated to perform this action'});
             } else {
